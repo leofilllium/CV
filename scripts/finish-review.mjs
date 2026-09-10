@@ -20,6 +20,9 @@ try {
   await page.screenshot({ path: "docs/preview/full-page.png", fullPage: true });
   for (const width of [1440, 1366, 1024, 768, 390, 320]) {
     await page.setViewportSize({ width, height: width < 768 ? 844 : 900 });
+    await page.evaluate(
+      () => new Promise((resolve) => requestAnimationFrame(() => requestAnimationFrame(resolve))),
+    );
     report.widths.push({
       width,
       overflow: await page.evaluate(() => document.documentElement.scrollWidth > innerWidth),
@@ -40,6 +43,13 @@ try {
   await page.setViewportSize({ width: 1440, height: 1000 });
   await page.goto("http://127.0.0.1:3100/work/safar-one", { waitUntil: "networkidle" });
   await page.screenshot({ path: "docs/preview/case-study.png", fullPage: true });
+  await page.goto("http://127.0.0.1:3100/work/clubhub", { waitUntil: "networkidle" });
+  await expect(page.getByRole("heading", { level: 1 })).toHaveText("ClubHub");
+  await page.screenshot({ path: "docs/preview/clubhub-desktop.png", fullPage: true });
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto("http://127.0.0.1:3100/ru/work/clubhub", { waitUntil: "networkidle" });
+  await page.screenshot({ path: "docs/preview/clubhub-mobile.png", fullPage: true });
+  report.extraChecks.push("ClubHub case study captured on desktop and phone in both languages");
   const noJs = await browser.newContext({
     javaScriptEnabled: false,
     viewport: { width: 1366, height: 768 },
@@ -69,6 +79,8 @@ try {
   report.extraChecks.push("WebGL-disabled browser gets visible fallback and readable content");
   await noGl.close();
   await writeFile("docs/preview/review.json", JSON.stringify(report, null, 2));
+  expect(report.widths.every((entry) => !entry.overflow)).toBe(true);
+  expect(report.errors).toEqual([]);
   console.log(JSON.stringify(report));
 } finally {
   await browser.close();

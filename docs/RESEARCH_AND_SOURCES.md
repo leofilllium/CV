@@ -16,7 +16,7 @@ Additional public sources reviewed:
 - [Flutter Gambling Studio](https://github.com/leofilllium/flutter-gambling-studio): public tooling for virtual-currency game workflows and verification. The portfolio describes it accurately in the game-tooling case study.
 - [GitHub public repository API](https://api.github.com/users/leofilllium/repos?per_page=100): confirmed which code links are public. No repository-count inflation; the earlier 58-repository audit includes private material.
 
-Quantitative claims such as the 36,000-document corpus, four Safar One roles, 15+ modules/builds are supplied by the local career records. The website does not represent this as an independent analytics audit. Unnecessary retention/latency/QA percentage claims were not used in the site copy.
+Quantitative claims such as the 36,000-document corpus, four Safar One roles, and 15+ modules/builds are supplied by the local career records. The website does not represent this as an independent analytics audit. Unnecessary retention/latency/QA percentage claims were not used in the site copy.
 
 ## Online design prompts and engineering references
 
@@ -48,3 +48,12 @@ The app stores only display preferences in localStorage. No tracking cookies, an
 ## Performance decision
 
 A first Lighthouse pass identified initial WebGL shader startup as the primary CPU cost. The final site renders an animated image captured from its own original scene first, and initializes Three.js only on mouse exploration, a model-control action, explicit activation, or keyboard rotation. This is an actual loading policy used for all visitors, not audit-specific code. All case-study content remains directly readable without WebGL. Shader compilation still happens when the visitor activates 3D, so its cost has been moved to an intentional interaction rather than hidden or claimed to disappear.
+
+## ClubHub and live project destinations — September 11, 2026
+
+- [ClubHub](https://clubhub.uz): public landing page fetched successfully and captured for `public/images/clubhub-home.png`. The image is a real capture of the owner’s website, including its existing promotional imagery; it is not a screenshot of a signed-in admin account.
+- [Game Hub repository](https://github.com/leofilllium/game-hub): private repository reviewed with owner-authorized, read-only access. The portfolio exposes the public website, not a source-code button that visitors cannot open. Review notes and evidence paths are in `CLUBHUB_ANALYSIS.md`. No credentials or private source files are included in the portfolio.
+- [Lawyer AI](https://lawyerai.uz): owner-supplied product domain; public page confirms the legal assistant, contract analysis, and document generation context.
+- [Sado AI / AI Caller](https://callai.academytable.ru/): owner-supplied destination responds successfully and identifies the product as Sado AI. It is linked to the existing voice-agent case study.
+
+Project cards and case studies expose these destinations directly. Availability was checked at review time; the portfolio does not make requests to these services during rendering.

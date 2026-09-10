@@ -104,6 +104,18 @@ export function ProjectGallery() {
                 ))}
               </div>
             </Link>
+            {project.website && (
+              <a
+                className="text-link project-website"
+                href={project.website}
+                target="_blank"
+                rel="noreferrer"
+                aria-label={ru ? `Открыть сайт ${project.name}` : `Visit ${project.name} website`}
+              >
+                {new URL(project.website).hostname}
+                <ArrowUpRight size={16} />
+              </a>
+            )}
           </Reveal>
         ))}
       </div>
@@ -117,8 +129,8 @@ export function ProjectGallery() {
               ? "Только избранное"
               : "Show selected work"
             : ru
-              ? "Все 8 проектов"
-              : "Explore all 8 projects"}
+              ? `Все проекты (${projects.length})`
+              : `Explore all ${projects.length} projects`}
           {expanded ? <ArrowUp /> : <ArrowDown />}
         </button>
       )}

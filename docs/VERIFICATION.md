@@ -4,7 +4,7 @@ Verified on September 11, 2026 against a local **production build**, not only th
 
 ## Build and source checks
 
-- `npm run build`: PASS. Next.js 16.3.4 generates both home routes and all 16 localized case-study routes, plus metadata routes.
+- `npm run build`: PASS. Next.js 16.3.4 generates both home routes and all 18 localized case-study routes, plus metadata routes.
 - `npm run lint`: PASS, no errors or warnings.
 - `npm run typecheck`: PASS.
 - Installed dependency audit: zero reported vulnerabilities at installation.
@@ -13,17 +13,19 @@ Verified on September 11, 2026 against a local **production build**, not only th
 
 ## Browser test suite
 
-`npm run test:e2e`: **8 passed**, 18.3 seconds. Chrome headless on macOS, production server at port 3100. Test source is in `tests/portfolio.spec.ts`.
+`npm run test:e2e`: **9 passed**, 31.3 seconds. Chrome headless on macOS, production server at port 3100. Test source is in `tests/portfolio.spec.ts`.
 
 1. Real content and candidate corrections, project filters and expansion, case-study navigation, public-code link, locale-preserving switch, valid downloadable PDF.
 2. Cmd/Ctrl+K search, technology matching, empty-state feedback, recruiter facts, Escape dismissal, and keyboard focus restored to the recruiter button.
 3. Architecture selection and node explanations; actual game completion by keyboard in 12 moves; restart resets state; collision blocks movement without increasing the counter.
 4. Explicit activation of the original sculpture preview into a rendered WebGL canvas, model selection, assemble/disassemble state, manual animation pause, and persisted theme preference after reload.
-5. All 16 case-study routes return HTTP 200; missing case study returns 404; structured metadata, Open Graph PNG, and all 18 sitemap entries.
+5. All 18 case-study routes return HTTP 200; missing case study returns 404; structured metadata, Open Graph PNG, and all 20 sitemap entries.
 6. Russian at a 390x844 viewport, operating-system reduced motion, mobile menu navigation, touch-control movement, and no horizontal overflow.
 7. Axe WCAG 2 A/AA and 2.1 A/AA checks: zero automated violations on the initial home page and recruiter dialog in **both dark and light themes**.
 
 8. A browser with WebGL disabled receives a visible preview, a clear fallback message, and disabled 3D-only controls instead of a stuck loading indicator.
+
+9. ClubHub is discoverable in featured projects and search; live website links resolve to the owner-provided domains in both languages; the private repository is not exposed as a public code link. The Russian ClubHub case study fits a 390px viewport.
 
 ## Visual review
 
@@ -63,3 +65,9 @@ The complete HTML reports and machine-readable metrics are in `docs/performance/
 ## Content correction verification
 
 Removed competition recognition claims from both website languages, the recruiter summary, the Safar One case study, CV sources, and all four PDF variants. The downloadable Russian CV matches its source PDF and remains two pages. A text check of both home routes, both Safar One routes, and all PDFs confirmed removal. Build, lint, and type checking passed. The three relevant browser tests passed in 11.0 seconds; responsive previews and Lighthouse reports were refreshed.
+
+## ClubHub and website-link update
+
+The nine-test suite passed after adding ClubHub, its bilingual case study, a real public-site preview, and direct links for Lawyer AI, ClubHub, and Sado AI. Build, lint, and type checking passed. The source review is documented in `CLUBHUB_ANALYSIS.md`.
+
+The responsive capture script now lets the browser finish its resize layout before measuring overflow, and fails if the settled layout overflows or a page error occurs. All six viewport checks passed. Updated ClubHub screenshots are in `docs/preview/clubhub-desktop.png` and `docs/preview/clubhub-mobile.png`. The Lighthouse table above records the earlier baseline, before this project addition.

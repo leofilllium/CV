@@ -4,6 +4,7 @@ import AxeBuilder from "@axe-core/playwright";
 const slugs = [
   "safar-one",
   "lawyer-ai",
+  "clubhub",
   "study-ninja",
   "sado-ai",
   "nikoh-uz",
@@ -27,8 +28,8 @@ test("content, filters, case-study navigation, and public CV", async ({ page, re
   await expect(page.locator(".project-entry")).toHaveCount(1);
   await expect(page.locator(".project-entry")).toContainText("Game Studio");
   await page.getByRole("button", { name: "All worlds", exact: true }).click();
-  await page.getByRole("button", { name: "Explore all 8 projects" }).click();
-  await expect(page.locator(".project-entry")).toHaveCount(8);
+  await page.getByRole("button", { name: "Explore all 9 projects" }).click();
+  await expect(page.locator(".project-entry")).toHaveCount(9);
   await page.locator('.project-link[href="/work/lawyer-ai"]').click();
   await expect(page).toHaveURL(/\/work\/lawyer-ai$/);
   await expect(page.locator("h1")).toHaveText("Lawyer AI");
@@ -141,7 +142,49 @@ test("all published routes, metadata, and missing-route behavior", async ({ requ
   expect(og.status()).toBe(200);
   expect(og.headers()["content-type"]).toContain("image/png");
   const sitemap = await request.get("/sitemap.xml");
-  expect((await sitemap.text()).match(/<loc>/g)?.length).toBe(18);
+  expect((await sitemap.text()).match(/<loc>/g)?.length).toBe(20);
+});
+
+test("ClubHub discovery and live project links in both languages", async ({ page }) => {
+  const sites = [
+    { slug: "lawyer-ai", name: "Lawyer AI", url: "https://lawyerai.uz" },
+    { slug: "clubhub", name: "ClubHub", url: "https://clubhub.uz" },
+    { slug: "sado-ai", name: "Sado AI", url: "https://callai.academytable.ru/" },
+  ];
+  await page.goto("/");
+  await expect(page.locator('.project-link[href="/work/clubhub"]')).toBeVisible();
+  await page.getByRole("button", { name: "Explore all 9 projects" }).click();
+  for (const site of sites) {
+    await expect(page.getByRole("link", { name: `Visit ${site.name} website` })).toHaveAttribute(
+      "href",
+      site.url,
+    );
+  }
+  await page.keyboard.press(process.platform === "darwin" ? "Meta+k" : "Control+k");
+  await page.getByRole("searchbox", { name: "Search projects" }).fill("ClubHub");
+  await page
+    .getByRole("dialog")
+    .getByRole("link", { name: /ClubHub/ })
+    .click();
+  await expect(page).toHaveURL(/\/work\/clubhub$/);
+  await expect(page.getByRole("heading", { level: 1 })).toHaveText("ClubHub");
+  await expect(page.locator(".case-prose")).toContainText("PostgreSQL exclusion constraints");
+  await expect(page.locator('.case-facts a[href*="github.com"]')).toHaveCount(0);
+  for (const prefix of ["", "/ru"]) {
+    for (const site of sites) {
+      await page.goto(`${prefix}/work/${site.slug}`);
+      const link = page.getByRole("link", {
+        name: prefix ? "Открыть сайт" : "Visit website",
+        exact: true,
+      });
+      await expect(link).toHaveAttribute("href", site.url);
+      await expect(link).toHaveAttribute("target", "_blank");
+    }
+  }
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto("/ru/work/clubhub");
+  await expect(page.locator(".case-prose")).toContainText("Ограничения PostgreSQL");
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
 });
 
 test("phone layout, Russian localization, touch game and reduced motion", async ({ page }) => {

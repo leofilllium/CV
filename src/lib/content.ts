@@ -41,6 +41,7 @@ export type Project = {
   metric: string;
   metricLabel: Localized;
   repo?: string;
+  website?: string;
   art: string;
 };
 export const projects: Project[] = [
@@ -133,6 +134,69 @@ export const projects: Project[] = [
     metric: "36k+",
     metricLabel: l("legal documents indexed", "правовых документов в индексе"),
     repo: "https://github.com/leofilllium/AI-UZ-Lawyer-Mobile",
+    website: "https://lawyerai.uz",
+  },
+  {
+    slug: "clubhub",
+    name: "ClubHub",
+    category: ["web"],
+    art: "clubhub",
+    sector: l("Gaming venues / Booking systems", "Игровые клубы / Бронирование"),
+    summary: l(
+      "Find your club. Pick your seat. Keep every booking in sync.",
+      "Найти клуб. Выбрать место. Синхронизировать каждую бронь.",
+    ),
+    headline: l("A better way to book your next game.", "Удобный путь от выбора клуба до игры."),
+    role: l(
+      "Full-stack development & system architecture",
+      "Full-stack разработка и архитектура системы",
+    ),
+    context: l("Independent product development", "Самостоятельная продуктовая разработка"),
+    challenge: l(
+      "Players need to find a gaming club and reserve a specific seat, while staff manage the same floor plan, prices, and arrivals. Concurrent requests must never assign the same seat to overlapping bookings.",
+      "Игрокам нужно найти компьютерный клуб и забронировать конкретное место, а сотрудникам — управлять тем же планом зала, тарифами и прибытием гостей. Параллельные запросы не должны создавать пересекающиеся брони одного места.",
+    ),
+    approach: l(
+      "Built a Next.js player app and admin console backed by a modular NestJS API. PostgreSQL exclusion constraints protect seat-time intervals; Redis manages temporary holds and Socket.io delivers availability updates. The floor-plan editor shares geometry between flat and 2.5D views, with undo history and version checks when saving.",
+      "Разработал приложение игрока и панель администратора на Next.js с модульным API на NestJS. Ограничения PostgreSQL защищают интервалы бронирования; Redis управляет временным удержанием мест, Socket.io передаёт обновления доступности. Редактор плана зала использует общую геометрию для плоского и 2.5D-вида, историю отмены и проверку версии при сохранении.",
+    ),
+    outcome: l(
+      "A web platform available at clubhub.uz, bringing club discovery, seat selection, bookings, QR check-in, and club administration together. Russian, Uzbek, and English interfaces serve players and staff, with Telegram Mini App access for players.",
+      "Веб-платформа на clubhub.uz объединяет поиск клубов, выбор мест, бронирование, регистрацию прибытия по QR-коду и управление клубом. Интерфейсы игрока и сотрудников доступны на русском, узбекском и английском, а игроки могут пользоваться Telegram Mini App.",
+    ),
+    stack: [
+      "Next.js",
+      "TypeScript",
+      "NestJS",
+      "PostgreSQL",
+      "PostGIS",
+      "Drizzle",
+      "Redis",
+      "BullMQ",
+      "Socket.io",
+    ],
+    pipeline: ["Next.js / Telegram", "NestJS API", "PostgreSQL / PostGIS", "Redis / Socket.io"],
+    details: [
+      l(
+        "Map-based club discovery and live seat availability",
+        "Поиск клубов на карте и актуальная доступность мест",
+      ),
+      l(
+        "Floor-plan editing with shared 2D / 2.5D geometry",
+        "Редактор плана зала с общей геометрией 2D / 2.5D",
+      ),
+      l(
+        "Booking conflicts prevented at the database level",
+        "Защита от пересекающихся броней на уровне базы данных",
+      ),
+      l(
+        "QR check-in and role-based club administration",
+        "Регистрация по QR-коду и ролевой доступ к управлению клубом",
+      ),
+    ],
+    metric: "3",
+    metricLabel: l("interface languages: RU / UZ / EN", "языка интерфейса: RU / UZ / EN"),
+    website: "https://clubhub.uz",
   },
   {
     slug: "study-ninja",
@@ -181,6 +245,7 @@ export const projects: Project[] = [
   {
     slug: "sado-ai",
     name: "Sado AI",
+    website: "https://callai.academytable.ru/",
     category: ["ai", "web"],
     art: "sado",
     sector: l("Voice AI / Telephony", "Голосовой ИИ / Телефония"),

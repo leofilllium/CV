@@ -6,6 +6,7 @@ import {
   ArrowUpRight,
   Check,
   GithubLogo,
+  Globe,
 } from "@phosphor-icons/react/dist/ssr";
 import { ExperienceProvider } from "./experience-provider";
 import { Navigation } from "./navigation";
@@ -62,6 +63,18 @@ export function CaseStudy({ project, locale }: { project: Project; locale: Local
                 <span key={item}>{item}</span>
               ))}
             </div>
+            {project.website && (
+              <a
+                className="button primary case-website"
+                href={project.website}
+                target="_blank"
+                rel="noreferrer"
+              >
+                <Globe />
+                {ru ? "Открыть сайт" : "Visit website"}
+                <ArrowUpRight />
+              </a>
+            )}
             {project.repo ? (
               <a className="button secondary" href={project.repo} target="_blank" rel="noreferrer">
                 <GithubLogo />

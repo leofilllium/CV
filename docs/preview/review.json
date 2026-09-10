@@ -27,6 +27,7 @@
   ],
   "extraChecks": [
     "Mobile menu search works",
+    "ClubHub case study captured on desktop and phone in both languages",
     "Core text, project links, and education visible without JavaScript",
     "WebGL-disabled browser gets visible fallback and readable content"
   ],

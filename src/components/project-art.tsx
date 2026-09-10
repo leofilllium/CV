@@ -9,6 +9,26 @@ import {
   FirstAidKit,
 } from "@phosphor-icons/react/dist/ssr";
 export function ProjectArt({ art, large = false }: { art: string; large?: boolean }) {
+  if (art === "clubhub")
+    return (
+      <div className={`project-art clubhub-art ${large ? "large" : ""}`}>
+        <div className="clubhub-browser">
+          <div className="clubhub-browser-bar" aria-hidden="true">
+            <span />
+            <span />
+            <span />
+            <small>clubhub.uz</small>
+          </div>
+          <Image
+            src="/images/clubhub-home.png"
+            width={1440}
+            height={1000}
+            alt="ClubHub website: gaming club discovery and seat booking"
+            sizes={large ? "(max-width: 768px) 90vw, 1100px" : "(max-width: 768px) 85vw, 620px"}
+          />
+        </div>
+      </div>
+    );
   if (art === "safar")
     return (
       <div className={`project-art safar-art ${large ? "large" : ""}`}>

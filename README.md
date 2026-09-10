@@ -1,6 +1,6 @@
 # Sherzod Akhmedov · Interactive portfolio
 
-A bilingual Next.js portfolio with an original interactive 3D sculpture, eight project case studies, a systems architecture lab, a playable orbit mission, project search, and a recruiter summary.
+A bilingual Next.js portfolio with an original interactive 3D sculpture, nine project case studies, a systems architecture lab, a playable orbit mission, project search, and a recruiter summary.
 
 ## Run locally
 
@@ -54,7 +54,7 @@ The role is **Middle**. WIUT is **ongoing**. The removed six-apps / active-users
 
 - Animated original sculpture preview with intent-loaded, rotatable 3D world, mobile device, and modular system; assemble/disassemble and keyboard rotation controls.
 - Static, readable initial HTML and a WebGL failure fallback.
-- Eight bilingual case studies (18 primary content routes).
+- Nine bilingual case studies (20 primary content routes).
 - Public source-code links; honest handling of private projects.
 - Real Safar One screenshots from the owner’s repository.
 - Filterable project gallery and `Cmd/Ctrl + K` project search.
