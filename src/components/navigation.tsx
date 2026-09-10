@@ -59,8 +59,8 @@ export function Navigation() {
   return (
     <>
       <header className="site-header">
-        <Link href={home} className="wordmark" aria-label={`s.a ${t(identity.name, locale)}`}>
-          <span className="brand-mark" aria-hidden="true">
+        <Link href={home} className="wordmark">
+          <span className="brand-mark">
             s<span>.</span>a
           </span>
           <span className="wordmark-name">

@@ -1,0 +1,34 @@
+{
+  "widths": [
+    {
+      "width": 1440,
+      "overflow": false
+    },
+    {
+      "width": 1366,
+      "overflow": false
+    },
+    {
+      "width": 1024,
+      "overflow": false
+    },
+    {
+      "width": 768,
+      "overflow": false
+    },
+    {
+      "width": 390,
+      "overflow": false
+    },
+    {
+      "width": 320,
+      "overflow": false
+    }
+  ],
+  "extraChecks": [
+    "Mobile menu search works",
+    "Core text, project links, and education visible without JavaScript",
+    "WebGL-disabled browser gets visible fallback and readable content"
+  ],
+  "errors": []
+}
