@@ -1,10 +1,10 @@
 "use client";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { Environment, Lightformer, OrbitControls, RoundedBox } from "@react-three/drei";
-import { Component, useMemo, useRef, type ReactNode } from "react";
+import { Component, useMemo, useRef, useEffect, useState, type ReactNode } from "react";
 import { Group, Vector3, MathUtils } from "three";
 
-type SceneProps = { calm: boolean; active: boolean; exploded: boolean; mode: number; rotation: number; onReady?: () => void };
+type SceneProps = { calm: boolean; active: boolean; exploded: boolean; mode: number; rotation: number; onReady?: () => void; onUnavailable?: () => void };
 
 function Artifact({ calm, active, exploded, mode, rotation }: SceneProps) {
   const assembly = useRef<Group>(null);
@@ -62,13 +62,31 @@ function Artifact({ calm, active, exploded, mode, rotation }: SceneProps) {
 export function SceneFallback() {
   return <div className="scene-fallback" role="img" aria-label="An orbital sculpture with interlocking rings"><div className="fallback-core" /><div className="fallback-ring" /><div className="fallback-ring second" /></div>;
 }
-class SceneBoundary extends Component<{ children: ReactNode }, { failed: boolean }> {
+class SceneBoundary extends Component<{ children: ReactNode; onUnavailable?: () => void }, { failed: boolean }> {
   state = { failed: false };
   static getDerivedStateFromError() { return { failed: true }; }
+  componentDidCatch() { this.props.onUnavailable?.(); }
   render() { return this.state.failed ? <SceneFallback /> : this.props.children; }
 }
 export default function OrbitalScene(props: SceneProps) {
-  return <SceneBoundary><Canvas dpr={[1, 1.5]} camera={{ position: [0, 0.15, 7.6], fov: 40 }} gl={{ antialias: true, alpha: true, powerPreference: "low-power" }} frameloop={props.active && !props.calm ? "always" : "demand"} fallback={<SceneFallback />} onCreated={props.onReady}>
+  const [supported, setSupported] = useState<boolean | null>(null);
+  const { onUnavailable } = props;
+  useEffect(() => {
+    const frame = requestAnimationFrame(() => {
+      let available = false;
+      try {
+        const probe = document.createElement("canvas").getContext("webgl2");
+        available = Boolean(probe);
+        probe?.getExtension("WEBGL_lose_context")?.loseContext();
+      } catch {}
+      setSupported(available);
+      if (!available) onUnavailable?.();
+    });
+    return () => cancelAnimationFrame(frame);
+  }, [onUnavailable]);
+  if (supported === null) return null;
+  if (!supported) return <SceneFallback />;
+  return <SceneBoundary onUnavailable={props.onUnavailable}><Canvas dpr={[1, 1.5]} camera={{ position: [0, 0.15, 7.6], fov: 40 }} gl={{ antialias: true, alpha: true, powerPreference: "low-power" }} frameloop={props.active && !props.calm ? "always" : "demand"} fallback={<SceneFallback />} onCreated={props.onReady}>
     <ambientLight intensity={0.7} /><directionalLight position={[4, 5, 4]} intensity={2.4} color="#eff6df" /><directionalLight position={[-4, 0, -3]} intensity={2} color="#a7d56c" />
     <Environment resolution={128}>
       <Lightformer intensity={3} position={[0, 4, 2]} scale={[5, 5, 1]} color="#ffffff" />

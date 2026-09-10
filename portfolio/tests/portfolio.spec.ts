@@ -138,3 +138,19 @@ test("accessible initial page and recruiter dialog in both themes", async ({ pag
     await page.keyboard.press("Escape");
   }
 });
+
+test("WebGL failure retains preview and reports a completed fallback state", async ({ page }) => {
+  await page.addInitScript(() => {
+    const original = HTMLCanvasElement.prototype.getContext;
+    HTMLCanvasElement.prototype.getContext = function(type: string, ...args: unknown[]) {
+      if (["webgl", "webgl2", "experimental-webgl"].includes(type)) return null;
+      return original.apply(this, [type, ...args] as Parameters<typeof original>);
+    } as typeof original;
+  });
+  await page.goto("/");
+  await page.getByRole("button", { name: "Explore in 3D" }).click({ force: true });
+  await expect(page.getByRole("button", { name: "Preview mode" })).toBeVisible();
+  await expect(page.locator(".scene-hint")).toContainText("3D could not start");
+  await expect(page.getByRole("button", { name: "Disassemble object" })).toBeDisabled();
+  await expect(page.getByRole("heading", { name: "IDEAS INTO NEW WORLDS." })).toBeVisible();
+});

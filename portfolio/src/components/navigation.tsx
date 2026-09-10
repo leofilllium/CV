@@ -34,7 +34,7 @@ export function Navigation() {
   const navLinks = [["work", ru ? "Проекты" : "Selected work"], ["playground", ru ? "Лаборатория" : "Playground"], ["about", ru ? "Мой путь" : "My journey"]];
   return <>
     <header className="site-header">
-      <Link href={home} className="wordmark" aria-label={t(identity.name, locale)}><span className="brand-mark" aria-hidden="true">s<span>.</span>a</span><span className="wordmark-name">{ru ? "ШЕРЗОД" : "SHERZOD"}<br />{ru ? "АХМЕДОВ" : "AKHMEDOV"}</span></Link>
+      <Link href={home} className="wordmark" aria-label={`s.a ${t(identity.name, locale)}`}><span className="brand-mark" aria-hidden="true">s<span>.</span>a</span><span className="wordmark-name">{ru ? "ШЕРЗОД" : "SHERZOD"}<br />{ru ? "АХМЕДОВ" : "AKHMEDOV"}</span></Link>
       <nav aria-label={ru ? "Основная навигация" : "Main navigation"} className="desktop-nav">
         {navLinks.map(([id, label]) => <Link key={id} href={`${home}#${id}`}>{label}</Link>)}
       </nav>

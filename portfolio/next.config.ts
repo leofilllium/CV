@@ -2,6 +2,7 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   poweredByHeader: false,
   reactStrictMode: true,
+  images: { formats: ["image/avif", "image/webp"] },
   experimental: { optimizePackageImports: ["@phosphor-icons/react", "@react-three/drei"] },
   async headers() {
     return [{ source: "/(.*)", headers: [

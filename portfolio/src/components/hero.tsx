@@ -1,7 +1,7 @@
 "use client";
 import dynamic from "next/dynamic";
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useCallback } from "react";
 import { motion } from "motion/react";
 import { ArrowDownRight, ArrowUpRight, ArrowsOutSimple, ArrowsInSimple, Cube, HandGrabbing } from "@phosphor-icons/react";
 import { useExperience } from "./experience-provider";
@@ -15,10 +15,12 @@ export function Hero() {
   const [mode, setMode] = useState(0);
   const [activated, setActivated] = useState(false);
   const [ready, setReady] = useState(false);
+  const [failed, setFailed] = useState(false);
   const [rotation, setRotation] = useState(0);
   const [exploded, setExploded] = useState(false);
   const [active, setActive] = useState(true);
   const sceneRef = useRef<HTMLDivElement>(null);
+  const handleUnavailable = useCallback(() => { setFailed(true); setReady(false); setMode(0); setExploded(false); }, []);
   useEffect(() => {
     let inView = true;
     const update = () => setActive(inView && !document.hidden);
@@ -37,12 +39,12 @@ export function Hero() {
     <div className="hero-visual" ref={sceneRef}>
       <div className="orbital-grid" aria-hidden="true" />
       <div className="scene-caption"><Cube size={17} /><span>{ru ? "ИНТЕРАКТИВНЫЙ ОБЪЕКТ" : "AN INTERACTIVE EXPLORATION"}</span></div>
-      <div className="scene-canvas" role="group" tabIndex={0} onPointerEnter={event => { if (event.pointerType === "mouse" && !calm) setActivated(true); }} onKeyDown={event => { if (event.key === "ArrowLeft" || event.key === "ArrowRight") { event.preventDefault(); setActivated(true); setRotation(value => value + (event.key === "ArrowRight" ? 0.25 : -0.25)); } }} aria-label={ru ? "Трёхмерная скульптура. Вращайте мышью или стрелками влево и вправо." : "3D orbital sculpture. Drag or use left and right arrow keys to rotate."}><button className={`orbital-poster ${ready ? "poster-hidden" : ""}`} onClick={() => setActivated(true)} disabled={activated} aria-label={activated ? (ru ? "Загрузка 3D…" : "Opening 3D…") : (ru ? "Исследовать в 3D" : "Explore in 3D")} tabIndex={activated ? -1 : 0}><Image src="/images/orbital-poster.png" fill priority sizes="(max-width: 767px) 100vw, 56vw" alt="" /><span className="poster-activate">{activated ? (ru ? "Загрузка 3D…" : "Opening 3D…") : (ru ? "Исследовать в 3D" : "Explore in 3D")}<ArrowUpRight size={14} /></span></button>{activated && <OrbitalScene calm={calm} active={active} exploded={exploded} mode={mode} rotation={rotation} onReady={() => setReady(true)} />}</div>
+      <div className="scene-canvas" role="group" tabIndex={0} onPointerEnter={event => { if (event.pointerType === "mouse" && !calm) setActivated(true); }} onKeyDown={event => { if (event.key === "ArrowLeft" || event.key === "ArrowRight") { event.preventDefault(); setActivated(true); setRotation(value => value + (event.key === "ArrowRight" ? 0.25 : -0.25)); } }} aria-label={ru ? "Трёхмерная скульптура. Вращайте мышью или стрелками влево и вправо." : "3D orbital sculpture. Drag or use left and right arrow keys to rotate."}><button className={`orbital-poster ${ready ? "poster-hidden" : ""}`} onClick={() => setActivated(true)} disabled={activated} aria-label={failed ? (ru ? "Режим просмотра" : "Preview mode") : activated ? (ru ? "Загрузка 3D…" : "Opening 3D…") : (ru ? "Исследовать в 3D" : "Explore in 3D")} tabIndex={activated ? -1 : 0}><Image src="/images/orbital-poster.png" fill priority fetchPriority="high" sizes="(max-width: 767px) 100vw, 56vw" alt="" /><span className="poster-activate">{failed ? (ru ? "Режим просмотра" : "Preview mode") : activated ? (ru ? "Загрузка 3D…" : "Opening 3D…") : (ru ? "Исследовать в 3D" : "Explore in 3D")}<ArrowUpRight size={14} /></span></button>{activated && <OrbitalScene calm={calm} active={active} exploded={exploded} mode={mode} rotation={rotation} onReady={() => setReady(true)} onUnavailable={handleUnavailable} />}</div>
       <div className="scene-controls">
-        <div className="scene-modes" role="group" aria-label={ru ? "Выбрать 3D-объект" : "Choose 3D object"}>{[ru ? "Миры" : "Worlds", "Mobile", ru ? "Системы" : "Systems"].map((label, index) => <button key={index} aria-pressed={mode === index} onClick={() => { setActivated(true); setMode(index); }}>{label}</button>)}</div>
-        <button className="icon-button scene-expand" aria-label={exploded ? (ru ? "Собрать объект" : "Assemble object") : (ru ? "Разобрать объект" : "Disassemble object")} onClick={() => { setActivated(true); setExploded(value => !value); }}>{exploded ? <ArrowsInSimple /> : <ArrowsOutSimple />}</button>
+        <div className="scene-modes" role="group" aria-label={ru ? "Выбрать 3D-объект" : "Choose 3D object"}>{[ru ? "Миры" : "Worlds", "Mobile", ru ? "Системы" : "Systems"].map((label, index) => <button key={index} disabled={failed} aria-pressed={mode === index} onClick={() => { setActivated(true); setMode(index); }}>{label}</button>)}</div>
+        <button disabled={failed} className="icon-button scene-expand" aria-label={exploded ? (ru ? "Собрать объект" : "Assemble object") : (ru ? "Разобрать объект" : "Disassemble object")} onClick={() => { setActivated(true); setExploded(value => !value); }}>{exploded ? <ArrowsInSimple /> : <ArrowsOutSimple />}</button>
       </div>
-      <div className="scene-hint"><HandGrabbing size={15} />{ru ? "Вращайте мышью или стрелками ← →" : "Drag to rotate. Or use ← → keys."}</div>
+      <div className="scene-hint"><HandGrabbing size={15} />{failed ? (ru ? "Браузер не запустил 3D. Доступен режим просмотра." : "3D could not start in this browser. Preview mode is active.") : (ru ? "Вращайте мышью или стрелками ← →" : "Drag to rotate. Or use ← → keys.")}</div>
     </div>
     <div className="hero-baseline"><span>{t(identity.name, locale)} <span className="muted">/ {ru ? "Инженер с любопытством" : "An engineer with curiosity"}</span></span><span>{ru ? "Ташкент → Весь мир" : "Tashkent → Anywhere"}</span></div>
   </section>;
