@@ -4,7 +4,7 @@ Tashkent, Uzbekistan • leofillium@gmail.com • +998 97 773 40 07 • [GitHub]
 ---
 
 ## Professional Summary
-Senior Flutter Engineer and AI Systems Architect with 3+ years of commercial experience delivering scalable mobile applications, Flutter Flame interactive engines, and full-stack backend platforms. Proven track record deploying 4-role mobility systems to the App Store and Google Play, building agentic AI frameworks orchestrating Claude Code and Codex CLI, and indexing 36,000+ legal documents into vector databases. Finalist in the national President Tech Award and BSc candidate in Business Information Systems at Westminster International University in Tashkent.
+Senior Flutter Engineer and AI Systems Architect with 3+ years of commercial experience delivering scalable mobile applications, Flutter Flame interactive engines, and full-stack backend platforms. Proven track record deploying 4-role mobility systems to the App Store and Google Play, building agentic AI frameworks orchestrating Claude Code and Codex CLI, and indexing 36,000+ legal documents into vector databases. BSc candidate in Business Information Systems at Westminster International University in Tashkent.
 
 ---
 
@@ -37,7 +37,7 @@ Senior Flutter Engineer and AI Systems Architect with 3+ years of commercial exp
 ### **Fullstack Flutter Developer** | **Self-Employed (Freelance)** | **March 2024 – Present**
 - Delivered 6 commercial mobile applications from initial requirements to App Store and Google Play releases, achieving a 99.8% crash-free session rate across 10,000+ active users.
 - Built Safar One, a multi-role on-demand platform serving 4 user roles (passengers, drivers, couriers, restaurants) from a single Flutter codebase with real-time WebSocket trip matching.
-- Engineered an Express.js and Socket.io dispatch backend achieving sub-100ms real-time driver location updates, earning selection as a finalist in the national President Tech Award.
+- Engineered an Express.js and Socket.io dispatch backend achieving sub-100ms real-time driver location updates.
 - Architected Lawyer AI, indexing 36,000+ legal statutes and case documents from Lex.uz into ChromaDB vector database to power sub-second RAG legal consultations and contract generation.
 - Automated 500+ daily inbound voice inquiries for commercial clients by developing Sado AI, integrating Asterisk SIP PBX telephony with local speech-to-text and catalog RAG retrieval.
 - Reduced offline data synchronization conflicts by 40% across client apps by implementing offline-first local data layers using Hive and SQLite with automated REST/WebSocket syncing.

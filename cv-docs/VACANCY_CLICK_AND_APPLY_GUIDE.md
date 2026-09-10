@@ -97,7 +97,7 @@ Here are the 4 roles you can target, ranked by compensation and conversion proba
 | :--- | :--- | :--- |
 | **Flutter Developer (Middle/Senior/Lead)** | `CV_Sherzod_Akhmedov_Flutter_Lead.md` (or PDF export) | Emphasize Clean Architecture, BLoC, real-time WebSockets/maps, and backend fluency |
 | **Startup / Fullstack / Founding Engineer** | `CV_Sherzod_Akhmedov_Fullstack.md` (or PDF export) | Emphasize ability to ship full stack (Flutter + Next.js + Node/Python + AI) solo from 0 to 1 |
-| **CIS / Russian-speaking Companies (hh.ru, hh.uz)** | `CV_Sherzod_Akhmedov_RU.md` (or PDF export) | Emphasize BLoC, Clean Arch, President Tech Award, and enterprise stability |
+| **CIS / Russian-speaking Companies (hh.ru, hh.uz)** | `CV_Sherzod_Akhmedov_RU.md` (or PDF export) | Emphasize BLoC, Clean Arch, and enterprise stability |
 | **Frontend Developer (React/Next.js)** | `CV_Sherzod_Akhmedov_Fullstack.md` | Emphasize Next.js 14, Zustand, Tailwind, Radix UI, Vitest, and SSE streaming |
 
 ---
@@ -116,7 +116,7 @@ With 3+ years of commercial software engineering experience, I specialize in bui
 
 A few highlights relevant to your team:
 - Lead Architecture Experience: Led mobile development on Study Ninja (AI adaptive learning platform), engineering sub-400ms Server-Sent Events (SSE) AI streaming and complex interactive modules.
-- End-to-End Real-Time Systems: Architected on-demand ride-hailing and matching platforms (Safar One taxi app for the President Tech Award) with real-time WebSocket driver tracking and Google Maps.
+- End-to-End Real-Time Systems: Architected on-demand ride-hailing and matching platforms (Safar One taxi app) with real-time WebSocket driver tracking and Google Maps.
 - Modern Full-Stack & AI Stack: Beyond Flutter, I actively build with Next.js 14, PostgreSQL/Redis, and LLM integrations (RAG pipelines, OpenAI, Claude, Asterisk voice telephony).
 - Education: BSc in Business Information Systems from Westminster International University in Tashkent (WIUT), degree taught 100% in English.
 
@@ -142,7 +142,7 @@ Tashkent, Uzbekistan (Open to Remote / Hybrid / Relocation)
 
 Чем я могу быть полезен вашей команде:
 1. Архитектурная надежность: Имею опыт руководства разработкой мобильного приложения Study Ninja (образовательная платформа с ИИ-тьютором), где внедрил чистую архитектуру (Domain/Data/Presentation), GoRouter, GetIt и BLoC, снизив частоту регрессионных ошибок на 35%.
-2. Real-Time & Сложная логика: Разрабатывал сервис такси Safar One (проект для конкурса President Tech Award) с динамическими картами и двусторонней трансляцией геопозиции через WebSockets с задержкой <100 мс.
+2. Real-Time & Сложная логика: Разрабатывал сервис такси Safar One с динамическими картами и двусторонней трансляцией геопозиции через WebSockets с задержкой <100 мс.
 3. Fullstack-кругозор: В отличие от большинства мобильных разработчиков, я глубоко понимаю серверную часть — проектирую базы данных и API на Node.js/TypeScript (Prisma, Redis) и Python/FastAPI, а также имею опыт интеграции RAG, OpenAI/Claude и стриминга ответов (SSE).
 4. Образование и языки: Окончил британский Международный Вестминстерский Университет в Ташкенте (WIUT) по специальности Business Information Systems. Английский — C1, Русский и Узбекский — свободный.
 

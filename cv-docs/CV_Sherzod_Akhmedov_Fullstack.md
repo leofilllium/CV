@@ -4,7 +4,7 @@ Tashkent, Uzbekistan • leofillium@gmail.com • +998 97 773 40 07 • [GitHub]
 ---
 
 ## Professional Summary
-Full-Stack Software Engineer and Mobile Architect with 3+ years of experience engineering production web, mobile, and agentic AI systems. Architected multi-role platforms deployed to the App Store and Google Play, built generative prompt-to-game engines with Claude Code and Codex CLI, and created legal RAG pipelines over 36,000+ indexed statutes. Finalist in the national President Tech Award and BSc candidate in Business Information Systems at Westminster International University in Tashkent.
+Full-Stack Software Engineer and Mobile Architect with 3+ years of experience engineering production web, mobile, and agentic AI systems. Architected multi-role platforms deployed to the App Store and Google Play, built generative prompt-to-game engines with Claude Code and Codex CLI, and created legal RAG pipelines over 36,000+ indexed statutes. BSc candidate in Business Information Systems at Westminster International University in Tashkent.
 
 ---
 
@@ -37,7 +37,7 @@ Full-Stack Software Engineer and Mobile Architect with 3+ years of experience en
 ### **Fullstack Mobile & Backend Engineer** | **Self-Employed (Freelance)** | **March 2024 – Present**
 - Architected and released 6 commercial products to the App Store and Google Play with a 99.8% crash-free rate across 10,000+ active user accounts.
 - Built Safar One, a production multi-role mobility system supporting 4 distinct user roles (passengers, drivers, couriers, restaurants) on a unified Flutter codebase.
-- Designed an Express.js and Socket.io dispatch backend delivering under 100ms driver tracking updates, selected as a finalist in the national President Tech Award.
+- Designed an Express.js and Socket.io dispatch backend delivering under 100ms driver tracking updates.
 - Created Lawyer AI, indexing 36,000+ legal statutes and case documents from Lex.uz into ChromaDB vector database to provide sub-second legal analysis and contract validation.
 - Automated 500+ daily inbound voice inquiries for commercial clients by engineering Sado AI with Asterisk SIP PBX telephony and speech-to-text synthesis.
 - Reduced offline data synchronization conflicts by 40% across client apps by implementing offline-first local data layers using Hive and SQLite with automated REST/WebSocket syncing.

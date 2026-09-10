@@ -39,7 +39,7 @@ From `OLD CV.docx` and the 58 audited repositories, your verified commercial his
    - Low-latency SSE streaming for real-time contextual AI tutoring (<400ms latency).
    - Student psychotyping adaptation engine and SMART goal tracking analytics (+28% retention).
 3. **Freelance / Product Development (March 2024 – Present) — Fullstack Flutter Developer**
-   - **Safar One:** Multi-role mobility platform (passengers, drivers, couriers, restaurants) in **production on App Store and Google Play**, with real-time Express.js/Socket.io dispatching (<100ms updates). Finalist in the **President Tech Award**.
+   - **Safar One:** Multi-role mobility platform (passengers, drivers, couriers, restaurants) in **production on App Store and Google Play**, with real-time Express.js/Socket.io dispatching (<100ms updates).
    - **Lawyer AI:** Agentic RAG legal assistant indexing **36,000+ legal statutes from Lex.uz** into ChromaDB vector database.
    - **Sado AI:** Automated voice call center handling 500+ daily calls via Asterisk SIP PBX telephony and speech-to-text.
 4. **Realsoft (January 2024 – March 2024) — Junior Flutter Developer**
@@ -54,5 +54,5 @@ From `OLD CV.docx` and the 58 audited repositories, your verified commercial his
 
 1. **Strict 2-Page Budget:** Calibrated margins, line-heights, and spacing to guarantee that all three CVs fit strictly onto **exactly 2 pages** with zero awkward page breaks.
 2. **100% Metric Saturation:** Every single bullet contains concrete, verifiable numbers (60 FPS, 35% reduction, sub-400ms latency, 15+ game builds, 36,000+ indexed statutes, 500+ daily calls, 99.8% crash-free rate, 75% unit test coverage).
-3. **Standout Enterprise Credentials:** Prominently featured national **E-IMZO PKI** authentication, **President Tech Award** finalist entry, and active production status on the **App Store and Google Play**.
+3. **Standout Enterprise Credentials:** Prominently featured national **E-IMZO PKI** authentication, and active production status on the **App Store and Google Play**.
 4. **Zero Anti-Patterns:** Removed all mid-sentence bolding, eliminated raw URLs, and avoided clichés.

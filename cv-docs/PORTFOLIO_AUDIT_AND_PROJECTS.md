@@ -10,7 +10,6 @@ The audit of your 58 repositories reveals an engineer with strong multi-discipli
 - **Primary Specialization:** Cross-Platform Mobile Engineering (**Flutter & Dart**) with enterprise architectural patterns (Clean Architecture, BLoC, Dependency Injection).
 - **Secondary Specialization:** Full-Stack Web & Distributed Systems (**React 18, Next.js 14, Node.js/TypeScript, Python/FastAPI/Django**).
 - **Cutting-Edge Competence:** Generative AI & Voice Telephony (**RAG, ChromaDB, OpenAI/Claude APIs, Server-Sent Events, Asterisk SIP PBX**).
-- **Competitive Recognition:** Entry and participation in Uzbekistan's **President Tech Award** (Taxi & On-Demand Dispatch system).
 
 ---
 
@@ -23,7 +22,7 @@ The audit of your 58 repositories reveals an engineer with strong multi-discipli
 | **`AI-UZ-Lawyer-Mobile`** | Public | Flutter, BLoC, Clean Architecture, Dio, Dartz, GetIt, Injectable, SecureStorage | Production-ready AI Legal Assistant app with 20+ specialized legal modes for Uzbekistan law. |
 | **`study-ninja-new-design`** | Private | Flutter, Dart, BLoC, Clean Architecture, GoRouter, Freezed, SSE Streaming | Adaptive AI learning platform with psychotyping, SMART goal tracking, and tutor marketplace. |
 | **`NikohUz`** | Private | Flutter, BLoC, Dio, Injectable, GoRouter, OpenStreetMap (`flutter_map`), Socket.io, FCM | Matrimonial application with nationwide map discovery, live matching, and photo moderation. |
-| **`taxi_app` / `Taxi-Application`** | Public & Private | Flutter, BLoC, Google Maps SDK, WebSockets, Dio | President Tech Award ride-hailing app with live driver tracking and route calculation. |
+| **`taxi_app` / `Taxi-Application`** | Public & Private | Flutter, BLoC, Google Maps SDK, WebSockets, Dio | Ride-hailing app with live driver tracking and route calculation. |
 | **`gym-app`** | Public | Flutter, Dart, BLoC, Video Player, Hive local storage, Dio | Workout app with offline video caching and custom animated routine player. |
 | **`perfume_app_mobile` / `perfume-app`** | Public | Flutter, BLoC, Dio, Hive, Responsive UI | Luxury e-commerce perfume shop with custom filter trees and recommendation cards. |
 | **`mock-app`** | Public | Flutter, BLoC, Dio, Clean Architecture | Production template and architectural prototype for enterprise apps. |
@@ -60,7 +59,7 @@ The audit of your 58 repositories reveals an engineer with strong multi-discipli
 | :--- | :--- | :--- | :--- |
 | **`call-center` (Sado AI)** | Private | Node.js, Express, RAG, OpenAI, Asterisk SIP PBX, Playwright | Automated AI voice call center in Uzbek with telephony modem and SIP trunking. |
 | **`nikoh-uz-backend`** | Private | Node.js, Express, TypeScript, Prisma ORM, PostgreSQL, Redis, MinIO S3, Zod, Vitest | Production-grade matrimonial API with cultural stages, rate limiting, and S3 storage. |
-| **`taxi-api`** | Private | Node.js, Express, Socket.io, Prisma ORM, WebSockets, JWT | Real-time dispatch backend for the President Tech Award taxi platform. |
+| **`taxi-api`** | Private | Node.js, Express, Socket.io, Prisma ORM, WebSockets, JWT | Real-time dispatch backend for the Safar One taxi platform. |
 | **`ai-contract-validator`** | Private | Python, FastAPI, LangChain, ChromaDB, OpenAI, Streamlit | Automated legal contract analyzer using vector similarity and LLM critique. |
 | **`00013219-CW-DSCC`** | Public | Python 3.12, Django 4.2, PostgreSQL, Docker, Nginx, GitHub Actions CI/CD | MediTrack: Distributed hospital information and prescription management system. |
 | **`M7`** | Private | TypeScript, PNPM Monorepo (`@m7/db`, `@m7/api`, `@m7/web`), Docker Compose | Scalable full-stack monorepo with isolated microservices. |
@@ -92,7 +91,7 @@ The audit of your 58 repositories reveals an engineer with strong multi-discipli
   - **Telephony Integration:** Configured Asterisk SIP PBX server and hardware cellular modem bridges for real telephony incoming/outgoing calls.
   - **Reliability:** Built with Playwright end-to-end integration tests and Telegram delivery fallbacks.
 
-### 3. Safar One / Taxi Application (President Tech Award)
+### 3. Safar One / Taxi Application
 - **Problem Solved:** On-demand dispatching, routing, and real-time coordination between riders and drivers.
 - **Architectural Highlights:**
   - **Real-Time Layer:** Bi-directional Socket.io server broadcasting geolocation coordinates every 1,000ms.

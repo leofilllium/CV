@@ -66,8 +66,8 @@ export const projects: Project[] = [
       "Разработал единое Flutter-приложение с BLoC, Google Maps и двусторонним сервером Socket.io. Разделил диспетчеризацию, обновление геопозиции и интерфейсы ролей, чтобы развивать систему без дублирования продукта.",
     ),
     outcome: l(
-      "A taxi and delivery platform published to the App Store and Google Play. The project reached the final of the national President Tech Award.",
-      "Платформа такси и доставки опубликована в App Store и Google Play. Проект вышел в финал национального конкурса President Tech Award.",
+      "A taxi and delivery platform published to the App Store and Google Play.",
+      "Платформа такси и доставки опубликована в App Store и Google Play.",
     ),
     stack: ["Flutter", "Dart", "BLoC", "Express", "Socket.io", "Google Maps", "Prisma"],
     pipeline: ["Flutter client", "Socket.io", "Dispatch API", "Prisma / DB"],

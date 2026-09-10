@@ -16,7 +16,7 @@ Additional public sources reviewed:
 - [Flutter Gambling Studio](https://github.com/leofilllium/flutter-gambling-studio): public tooling for virtual-currency game workflows and verification. The portfolio describes it accurately in the game-tooling case study.
 - [GitHub public repository API](https://api.github.com/users/leofilllium/repos?per_page=100): confirmed which code links are public. No repository-count inflation; the earlier 58-repository audit includes private material.
 
-Quantitative claims such as the 36,000-document corpus, four Safar One roles, 15+ modules/builds, and finalist status are supplied by the local career records. The website does not represent this as an independent analytics audit. Unnecessary retention/latency/QA percentage claims were not used in the site copy.
+Quantitative claims such as the 36,000-document corpus, four Safar One roles, 15+ modules/builds are supplied by the local career records. The website does not represent this as an independent analytics audit. Unnecessary retention/latency/QA percentage claims were not used in the site copy.
 
 ## Online design prompts and engineering references
 

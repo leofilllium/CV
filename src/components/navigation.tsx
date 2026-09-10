@@ -294,10 +294,6 @@ export function Navigation() {
                 </dd>
               </div>
             </dl>
-            <div className="recruiter-proof">
-              <span>President Tech Award</span>
-              <p>{ru ? "Финалист с проектом Safar One" : "Finalist with Safar One"}</p>
-            </div>
             <div className="button-row">
               <a className="button primary" href={identity.cv} download>
                 {ru ? "Скачать CV (RU)" : "Download CV (RU)"}

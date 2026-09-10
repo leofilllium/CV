@@ -98,15 +98,6 @@ export function HomePage({ locale }: { locale: Locale }) {
             </span>
             <p>{ru ? "Правовых документов в Lawyer AI" : "Legal documents indexed in Lawyer AI"}</p>
           </div>
-          <div>
-            <span className="proof-value award-value">
-              President
-              <br />
-              Tech Award
-              <ArrowUpRight />
-            </span>
-            <p>{ru ? "Финалист с проектом Safar One" : "National finalist with Safar One"}</p>
-          </div>
         </section>
         <ProjectGallery />
         <Manifesto>

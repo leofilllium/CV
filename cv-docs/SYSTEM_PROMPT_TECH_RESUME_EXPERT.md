@@ -17,7 +17,7 @@ Structure and order content so these five things are instantly visible:
 2. **Relevant technologies:** Especially those named in target job descriptions (Flutter, Dart, Clean Architecture, BLoC, Node.js, Python, FastApi, WebSockets).
 3. **Quantified work experience:** Showing consistent, measurable impact.
 4. **Work authorization & location:** Tashkent, Uzbekistan (Open to Remote / Hybrid / Relocation).
-5. **Standout credentials:** National President Tech Award finalist, national E-IMZO PKI integration, production apps on App Store and Google Play, 36,000+ legal statutes indexed in ChromaDB.
+5. **Standout credentials:** National E-IMZO PKI integration, production apps on App Store and Google Play, 36,000+ legal statutes indexed in ChromaDB.
 
 ---
 

@@ -59,3 +59,7 @@ Local production server, Lighthouse 13, Chrome headless. These are lab measureme
 The mobile LCP is above the 2.5 s target in throttled simulation; the principal content appears earlier. Remaining opportunities are reducing initial JavaScript/font work and further tuning image delivery. Initial shader compilation was removed from page load by the documented intent-based 3D policy, with an original animated preview. All three interactive models remain available and browser-tested.
 
 The complete HTML reports and machine-readable metrics are in `docs/performance/`. After the final accessible-name cleanup, the targeted accessibility test passed again in both themes; the Lighthouse accessible-name diagnostic is also clear.
+
+## Content correction verification
+
+Removed competition recognition claims from both website languages, the recruiter summary, the Safar One case study, CV sources, and all four PDF variants. The downloadable Russian CV matches its source PDF and remains two pages. A text check of both home routes, both Safar One routes, and all PDFs confirmed removal. Build, lint, and type checking passed. The three relevant browser tests passed in 11.0 seconds; responsive previews and Lighthouse reports were refreshed.
