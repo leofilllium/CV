@@ -1,15 +1,26 @@
 import { test, expect } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
 
-const slugs = ["safar-one", "lawyer-ai", "study-ninja", "sado-ai", "nikoh-uz", "game-studio", "marketcard", "meditrack"];
+const slugs = [
+  "safar-one",
+  "lawyer-ai",
+  "study-ninja",
+  "sado-ai",
+  "nikoh-uz",
+  "game-studio",
+  "marketcard",
+  "meditrack",
+];
 
 test("content, filters, case-study navigation, and public CV", async ({ page, request }) => {
   const errors: string[] = [];
-  page.on("pageerror", e => errors.push(e.message));
+  page.on("pageerror", (e) => errors.push(e.message));
   await page.goto("/");
   await expect(page.locator("h1")).toContainText("IDEAS INTO");
   await expect(page.locator(".hero-eyebrow")).toContainText("MIDDLE");
-  await expect(page.locator("body")).not.toContainText(/99[.,]8|6 commercial|six commercial|Senior Flutter/);
+  await expect(page.locator("body")).not.toContainText(
+    /99[.,]8|6 commercial|six commercial|Senior Flutter/,
+  );
   await expect(page.locator(".education-band")).toContainText("Studies ongoing");
   await expect(page.locator(".project-entry")).toHaveCount(4);
   await page.getByRole("button", { name: "Games & tools", exact: true }).click();
@@ -21,7 +32,10 @@ test("content, filters, case-study navigation, and public CV", async ({ page, re
   await page.locator('.project-link[href="/work/lawyer-ai"]').click();
   await expect(page).toHaveURL(/\/work\/lawyer-ai$/);
   await expect(page.locator("h1")).toHaveText("Lawyer AI");
-  await expect(page.getByRole("link", { name: "Explore the code" })).toHaveAttribute("href", "https://github.com/leofilllium/AI-UZ-Lawyer-Mobile");
+  await expect(page.getByRole("link", { name: "Explore the code" })).toHaveAttribute(
+    "href",
+    "https://github.com/leofilllium/AI-UZ-Lawyer-Mobile",
+  );
   await page.getByRole("link", { name: "RU: Переключить на русский" }).click();
   await expect(page).toHaveURL(/\/ru\/work\/lawyer-ai$/);
   await expect(page.getByRole("heading", { name: "Мой подход" })).toBeVisible();
@@ -47,7 +61,10 @@ test("search, empty results, recruiter facts, and keyboard dismissal", async ({ 
   await expect(dialog).toContainText("Middle Flutter");
   await expect(dialog).toContainText("studies ongoing");
   await expect(dialog).not.toContainText(/Senior|99[.,]8|6 commercial/);
-  await expect(dialog.getByRole("link", { name: "Download CV (RU)" })).toHaveAttribute("download", "");
+  await expect(dialog.getByRole("link", { name: "Download CV (RU)" })).toHaveAttribute(
+    "download",
+    "",
+  );
   await page.keyboard.press("Escape");
   await expect(dialog).toHaveCount(0);
   await expect(page.getByRole("button", { name: "Recruiter view" })).toBeFocused();
@@ -61,7 +78,20 @@ test("interactive system architecture and reachable game completion", async ({ p
   await page.getByRole("tab", { name: "Orbit mission" }).click();
   await page.getByRole("button", { name: "Launch mission" }).click();
   await expect(page.locator(".game-grid")).toBeFocused();
-  for (const key of ["ArrowRight", "ArrowRight", "ArrowRight", "ArrowRight", "ArrowDown", "ArrowDown", "ArrowLeft", "ArrowLeft", "ArrowRight", "ArrowRight", "ArrowDown", "ArrowDown"]) {
+  for (const key of [
+    "ArrowRight",
+    "ArrowRight",
+    "ArrowRight",
+    "ArrowRight",
+    "ArrowDown",
+    "ArrowDown",
+    "ArrowLeft",
+    "ArrowLeft",
+    "ArrowRight",
+    "ArrowRight",
+    "ArrowDown",
+    "ArrowDown",
+  ]) {
     await page.keyboard.press(key);
   }
   await expect(page.locator(".game-stats")).toContainText("3/3");
@@ -78,8 +108,15 @@ test("3D controls, pause, and persistent theme switch", async ({ page }) => {
   await page.goto("/");
   await page.getByRole("button", { name: "Explore in 3D" }).click({ force: true });
   await expect(page.locator("canvas")).toBeVisible();
-  await page.getByRole("group", { name: "Choose 3D object" }).getByRole("button", { name: "Mobile", exact: true }).click();
-  await expect(page.getByRole("group", { name: "Choose 3D object" }).getByRole("button", { name: "Mobile", exact: true })).toHaveAttribute("aria-pressed", "true");
+  await page
+    .getByRole("group", { name: "Choose 3D object" })
+    .getByRole("button", { name: "Mobile", exact: true })
+    .click();
+  await expect(
+    page
+      .getByRole("group", { name: "Choose 3D object" })
+      .getByRole("button", { name: "Mobile", exact: true }),
+  ).toHaveAttribute("aria-pressed", "true");
   await page.getByRole("button", { name: "Disassemble object" }).click();
   await expect(page.getByRole("button", { name: "Assemble object" })).toBeVisible();
   await page.getByRole("button", { name: "Pause motion" }).click();
@@ -129,12 +166,21 @@ test("accessible initial page and recruiter dialog in both themes", async ({ pag
   await page.goto("/");
   await page.getByRole("button", { name: "Pause motion" }).click();
   for (const theme of ["dark", "light"]) {
-    if (theme === "light") await page.getByRole("button", { name: "Switch to light theme" }).click();
-    const baseline = await new AxeBuilder({ page }).withTags(["wcag2a", "wcag2aa", "wcag21a", "wcag21aa"]).analyze();
-    expect(baseline.violations.map(v => ({ id: v.id, nodes: v.nodes.map(n => n.target) }))).toEqual([]);
+    if (theme === "light")
+      await page.getByRole("button", { name: "Switch to light theme" }).click();
+    const baseline = await new AxeBuilder({ page })
+      .withTags(["wcag2a", "wcag2aa", "wcag21a", "wcag21aa"])
+      .analyze();
+    expect(
+      baseline.violations.map((v) => ({ id: v.id, nodes: v.nodes.map((n) => n.target) })),
+    ).toEqual([]);
     await page.getByRole("button", { name: "Recruiter view" }).click();
-    const modal = await new AxeBuilder({ page }).withTags(["wcag2a", "wcag2aa", "wcag21a", "wcag21aa"]).analyze();
-    expect(modal.violations.map(v => ({ id: v.id, nodes: v.nodes.map(n => n.target) }))).toEqual([]);
+    const modal = await new AxeBuilder({ page })
+      .withTags(["wcag2a", "wcag2aa", "wcag21a", "wcag21aa"])
+      .analyze();
+    expect(
+      modal.violations.map((v) => ({ id: v.id, nodes: v.nodes.map((n) => n.target) })),
+    ).toEqual([]);
     await page.keyboard.press("Escape");
   }
 });
@@ -142,7 +188,11 @@ test("accessible initial page and recruiter dialog in both themes", async ({ pag
 test("WebGL failure retains preview and reports a completed fallback state", async ({ page }) => {
   await page.addInitScript(() => {
     const original = HTMLCanvasElement.prototype.getContext;
-    HTMLCanvasElement.prototype.getContext = function(type: string, ...args: unknown[]) {
+    HTMLCanvasElement.prototype.getContext = function (
+      this: HTMLCanvasElement,
+      type: string,
+      ...args: unknown[]
+    ) {
       if (["webgl", "webgl2", "experimental-webgl"].includes(type)) return null;
       return original.apply(this, [type, ...args] as Parameters<typeof original>);
     } as typeof original;

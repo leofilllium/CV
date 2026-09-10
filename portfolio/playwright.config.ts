@@ -14,7 +14,11 @@ export default defineConfig({
     screenshot: "only-on-failure",
     trace: "retain-on-failure",
     launchOptions: {
-      executablePath: process.env.PLAYWRIGHT_CHROME_PATH || (process.platform === "darwin" ? "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" : undefined),
+      executablePath:
+        process.env.PLAYWRIGHT_CHROME_PATH ||
+        (process.platform === "darwin"
+          ? "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
+          : undefined),
       args: ["--enable-webgl", "--use-angle=swiftshader", "--enable-unsafe-swiftshader"],
     },
   },

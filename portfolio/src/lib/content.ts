@@ -2,8 +2,9 @@ export type Locale = "en" | "ru";
 export type Localized = { en: string; ru: string };
 export const l = (en: string, ru: string): Localized => ({ en, ru });
 export const t = (value: Localized, locale: Locale) => value[locale];
-export const homePath = (locale: Locale) => locale === "ru" ? "/ru" : "/";
-export const workPath = (slug: string, locale: Locale) => `${locale === "ru" ? "/ru" : ""}/work/${slug}`;
+export const homePath = (locale: Locale) => (locale === "ru" ? "/ru" : "/");
+export const workPath = (slug: string, locale: Locale) =>
+  `${locale === "ru" ? "/ru" : ""}/work/${slug}`;
 export const identity = {
   name: l("Sherzod Akhmedov", "Шерзод Ахмедов"),
   role: "Middle Flutter & Full-stack Developer",
@@ -23,147 +24,457 @@ export const categories: { id: Category; label: Localized }[] = [
   { id: "games", label: l("Games & tools", "Игры и инструменты") },
 ];
 export type Project = {
-  slug: string; name: string; category: Category[]; sector: Localized;
-  summary: Localized; headline: Localized; role: Localized; context: Localized;
-  challenge: Localized; approach: Localized; outcome: Localized;
-  stack: string[]; pipeline: string[]; details: Localized[];
-  metric: string; metricLabel: Localized; repo?: string; art: string;
+  slug: string;
+  name: string;
+  category: Category[];
+  sector: Localized;
+  summary: Localized;
+  headline: Localized;
+  role: Localized;
+  context: Localized;
+  challenge: Localized;
+  approach: Localized;
+  outcome: Localized;
+  stack: string[];
+  pipeline: string[];
+  details: Localized[];
+  metric: string;
+  metricLabel: Localized;
+  repo?: string;
+  art: string;
 };
 export const projects: Project[] = [
   {
-    slug: "safar-one", name: "Safar One", category: ["mobile", "web"], art: "safar",
+    slug: "safar-one",
+    name: "Safar One",
+    category: ["mobile", "web"],
+    art: "safar",
     sector: l("Mobility / Real-time", "Мобильность / Real-time"),
-    summary: l("One platform. Four sides of a city in motion.", "Одна платформа. Четыре стороны движения города."),
+    summary: l(
+      "One platform. Four sides of a city in motion.",
+      "Одна платформа. Четыре стороны движения города.",
+    ),
     headline: l("Keeping a city connected.", "Соединяя город в движении."),
     role: l("Flutter & backend development", "Flutter и серверная разработка"),
     context: l("Freelance / Product development", "Фриланс / Продуктовая разработка"),
-    challenge: l("Passengers, drivers, couriers, and restaurants need different workflows, but every order depends on the same accurate, real-time state.", "Пассажирам, водителям, курьерам и ресторанам нужны разные сценарии, но каждый заказ зависит от единого актуального состояния."),
-    approach: l("Built a shared Flutter application with BLoC, Google Maps, and a bidirectional Socket.io backend. Separated dispatch, location updates, and role-specific interfaces so the system could evolve without duplicating the product.", "Разработал единое Flutter-приложение с BLoC, Google Maps и двусторонним сервером Socket.io. Разделил диспетчеризацию, обновление геопозиции и интерфейсы ролей, чтобы развивать систему без дублирования продукта."),
-    outcome: l("A taxi and delivery platform published to the App Store and Google Play. The project reached the final of the national President Tech Award.", "Платформа такси и доставки опубликована в App Store и Google Play. Проект вышел в финал национального конкурса President Tech Award."),
+    challenge: l(
+      "Passengers, drivers, couriers, and restaurants need different workflows, but every order depends on the same accurate, real-time state.",
+      "Пассажирам, водителям, курьерам и ресторанам нужны разные сценарии, но каждый заказ зависит от единого актуального состояния.",
+    ),
+    approach: l(
+      "Built a shared Flutter application with BLoC, Google Maps, and a bidirectional Socket.io backend. Separated dispatch, location updates, and role-specific interfaces so the system could evolve without duplicating the product.",
+      "Разработал единое Flutter-приложение с BLoC, Google Maps и двусторонним сервером Socket.io. Разделил диспетчеризацию, обновление геопозиции и интерфейсы ролей, чтобы развивать систему без дублирования продукта.",
+    ),
+    outcome: l(
+      "A taxi and delivery platform published to the App Store and Google Play. The project reached the final of the national President Tech Award.",
+      "Платформа такси и доставки опубликована в App Store и Google Play. Проект вышел в финал национального конкурса President Tech Award.",
+    ),
     stack: ["Flutter", "Dart", "BLoC", "Express", "Socket.io", "Google Maps", "Prisma"],
     pipeline: ["Flutter client", "Socket.io", "Dispatch API", "Prisma / DB"],
-    details: [l("Live driver tracking and animated routes", "Отслеживание водителей и анимированные маршруты"), l("Passenger, driver, courier, and restaurant workflows", "Сценарии пассажира, водителя, курьера и ресторана"), l("Location sharing, ride requests, and delivery orders", "Обмен геопозицией, поездки и заказы доставки")],
-    metric: "4", metricLabel: l("connected user roles", "связанные роли пользователей"),
+    details: [
+      l(
+        "Live driver tracking and animated routes",
+        "Отслеживание водителей и анимированные маршруты",
+      ),
+      l(
+        "Passenger, driver, courier, and restaurant workflows",
+        "Сценарии пассажира, водителя, курьера и ресторана",
+      ),
+      l(
+        "Location sharing, ride requests, and delivery orders",
+        "Обмен геопозицией, поездки и заказы доставки",
+      ),
+    ],
+    metric: "4",
+    metricLabel: l("connected user roles", "связанные роли пользователей"),
     repo: "https://github.com/leofilllium/Taxi-Application",
   },
   {
-    slug: "lawyer-ai", name: "Lawyer AI", category: ["mobile", "ai"], art: "lawyer",
+    slug: "lawyer-ai",
+    name: "Lawyer AI",
+    category: ["mobile", "ai"],
+    art: "lawyer",
     sector: l("Legal tech / Retrieval AI", "Legal tech / Поисковый ИИ"),
-    summary: l("Turning a mountain of law into a useful answer.", "От тысяч законов к полезному ответу."),
+    summary: l(
+      "Turning a mountain of law into a useful answer.",
+      "От тысяч законов к полезному ответу.",
+    ),
     headline: l("Knowledge that works for you.", "Знания, которые работают."),
     role: l("Mobile architecture & RAG integration", "Мобильная архитектура и интеграция RAG"),
     context: l("Freelance / Product development", "Фриланс / Продуктовая разработка"),
-    challenge: l("Legal research in Uzbekistan involves navigating a large body of legislation. A useful assistant needs relevant sources, structured analysis, and a mobile experience that stays responsive while answers stream.", "Юридический поиск в Узбекистане требует работы с большой базой законодательства. Ассистенту нужны релевантные источники, структурированный анализ и отзывчивый интерфейс при потоковой генерации ответов."),
-    approach: l("Indexed 36,000+ Lex.uz legal documents with LangChain and ChromaDB. Connected a FastAPI backend to a Flutter client organized into data, domain, and presentation layers. Added contract validation, generation, and specialized consultation modes.", "Проиндексировал 36 000+ документов Lex.uz с помощью LangChain и ChromaDB. Соединил FastAPI с Flutter-клиентом, разделённым на data, domain и presentation. Добавил проверку и генерацию договоров и специализированные режимы консультаций."),
-    outcome: l("A legal workspace with 20+ consultation modes, contract risk analysis, document generation, task management, and role-based team access.", "Юридическое рабочее пространство с 20+ режимами консультаций, анализом рисков договоров, генерацией документов, задачами и ролевым доступом команды."),
+    challenge: l(
+      "Legal research in Uzbekistan involves navigating a large body of legislation. A useful assistant needs relevant sources, structured analysis, and a mobile experience that stays responsive while answers stream.",
+      "Юридический поиск в Узбекистане требует работы с большой базой законодательства. Ассистенту нужны релевантные источники, структурированный анализ и отзывчивый интерфейс при потоковой генерации ответов.",
+    ),
+    approach: l(
+      "Indexed 36,000+ Lex.uz legal documents with LangChain and ChromaDB. Connected a FastAPI backend to a Flutter client organized into data, domain, and presentation layers. Added contract validation, generation, and specialized consultation modes.",
+      "Проиндексировал 36 000+ документов Lex.uz с помощью LangChain и ChromaDB. Соединил FastAPI с Flutter-клиентом, разделённым на data, domain и presentation. Добавил проверку и генерацию договоров и специализированные режимы консультаций.",
+    ),
+    outcome: l(
+      "A legal workspace with 20+ consultation modes, contract risk analysis, document generation, task management, and role-based team access.",
+      "Юридическое рабочее пространство с 20+ режимами консультаций, анализом рисков договоров, генерацией документов, задачами и ролевым доступом команды.",
+    ),
     stack: ["Flutter", "BLoC", "FastAPI", "Python", "LangChain", "ChromaDB", "Dio"],
     pipeline: ["Flutter / BLoC", "FastAPI", "RAG retrieval", "ChromaDB"],
-    details: [l("Source-grounded answers over Uzbekistan legislation", "Ответы с поиском по законодательству Узбекистана"), l("Streaming contract generation and risk analysis", "Потоковая генерация договоров и анализ рисков"), l("Isolated feature modules with GetIt and GoRouter", "Изолированные модули функций с GetIt и GoRouter")],
-    metric: "36k+", metricLabel: l("legal documents indexed", "правовых документов в индексе"),
+    details: [
+      l(
+        "Source-grounded answers over Uzbekistan legislation",
+        "Ответы с поиском по законодательству Узбекистана",
+      ),
+      l(
+        "Streaming contract generation and risk analysis",
+        "Потоковая генерация договоров и анализ рисков",
+      ),
+      l(
+        "Isolated feature modules with GetIt and GoRouter",
+        "Изолированные модули функций с GetIt и GoRouter",
+      ),
+    ],
+    metric: "36k+",
+    metricLabel: l("legal documents indexed", "правовых документов в индексе"),
     repo: "https://github.com/leofilllium/AI-UZ-Lawyer-Mobile",
   },
   {
-    slug: "study-ninja", name: "Study Ninja", category: ["mobile", "ai", "web"], art: "study",
+    slug: "study-ninja",
+    name: "Study Ninja",
+    category: ["mobile", "ai", "web"],
+    art: "study",
     sector: l("Education / Adaptive learning", "Образование / Адаптивное обучение"),
-    summary: l("A learning journey that adapts to the learner.", "Обучение, которое подстраивается под ученика."),
+    summary: l(
+      "A learning journey that adapts to the learner.",
+      "Обучение, которое подстраивается под ученика.",
+    ),
     headline: l("Every mind takes a different path.", "У каждого свой путь к знаниям."),
     role: l("Founding Flutter Developer", "Flutter-разработчик, запуск продукта с нуля"),
-    context: l("X-Team Pro / December 2025 - February 2026", "X-Team Pro / Декабрь 2025 - февраль 2026"),
-    challenge: l("A single curriculum cannot serve every learning style. The product needed an adaptive tutor, visible learning progress, and a marketplace connecting students with human teachers.", "Единый учебный план не учитывает все стили обучения. Продукту нужны адаптивный ИИ-тьютор, наглядный прогресс и маркетплейс преподавателей."),
-    approach: l("Built the platform from the ground up in a four-engineer team. Used Clean Architecture and BLoC for the mobile client, SSE for incremental AI responses, and React knowledge graphs to make concept relationships visible.", "Создал платформу с нуля в команде из четырёх инженеров. Применил Clean Architecture и BLoC в мобильном клиенте, SSE для потоковых ответов ИИ и графы знаний на React для связей между понятиями."),
-    outcome: l("An adaptive education platform combining psychotype-based lesson sequences, SMART goal tracking, tutor discovery, and streaming AI assistance across mobile and web.", "Адаптивная образовательная платформа объединяет учебные последовательности по психотипу, SMART-цели, поиск репетиторов и потоковую ИИ-помощь в мобильном и веб-клиентах."),
+    context: l(
+      "X-Team Pro / December 2025 - February 2026",
+      "X-Team Pro / Декабрь 2025 - февраль 2026",
+    ),
+    challenge: l(
+      "A single curriculum cannot serve every learning style. The product needed an adaptive tutor, visible learning progress, and a marketplace connecting students with human teachers.",
+      "Единый учебный план не учитывает все стили обучения. Продукту нужны адаптивный ИИ-тьютор, наглядный прогресс и маркетплейс преподавателей.",
+    ),
+    approach: l(
+      "Built the platform from the ground up in a four-engineer team. Used Clean Architecture and BLoC for the mobile client, SSE for incremental AI responses, and React knowledge graphs to make concept relationships visible.",
+      "Создал платформу с нуля в команде из четырёх инженеров. Применил Clean Architecture и BLoC в мобильном клиенте, SSE для потоковых ответов ИИ и графы знаний на React для связей между понятиями.",
+    ),
+    outcome: l(
+      "An adaptive education platform combining psychotype-based lesson sequences, SMART goal tracking, tutor discovery, and streaming AI assistance across mobile and web.",
+      "Адаптивная образовательная платформа объединяет учебные последовательности по психотипу, SMART-цели, поиск репетиторов и потоковую ИИ-помощь в мобильном и веб-клиентах.",
+    ),
     stack: ["Flutter", "BLoC", "SSE", "Dio", "React", "TypeScript", "Dagre", "Freezed"],
     pipeline: ["Mobile / Web", "SSE stream", "AI tutor", "Learning graph"],
-    details: [l("15+ modular product features", "15+ функциональных модулей"), l("Interactive knowledge maps and progress analytics", "Интерактивные карты знаний и аналитика прогресса"), l("Student and tutor marketplace with goal tracking", "Маркетплейс учеников и репетиторов с отслеживанием целей")],
-    metric: "15+", metricLabel: l("modular features", "функциональных модулей"),
+    details: [
+      l("15+ modular product features", "15+ функциональных модулей"),
+      l(
+        "Interactive knowledge maps and progress analytics",
+        "Интерактивные карты знаний и аналитика прогресса",
+      ),
+      l(
+        "Student and tutor marketplace with goal tracking",
+        "Маркетплейс учеников и репетиторов с отслеживанием целей",
+      ),
+    ],
+    metric: "15+",
+    metricLabel: l("modular features", "функциональных модулей"),
   },
   {
-    slug: "sado-ai", name: "Sado AI", category: ["ai", "web"], art: "sado",
+    slug: "sado-ai",
+    name: "Sado AI",
+    category: ["ai", "web"],
+    art: "sado",
     sector: l("Voice AI / Telephony", "Голосовой ИИ / Телефония"),
-    summary: l("A voice assistant that speaks your customers’ language.", "Голосовой помощник на языке ваших клиентов."),
+    summary: l(
+      "A voice assistant that speaks your customers’ language.",
+      "Голосовой помощник на языке ваших клиентов.",
+    ),
     headline: l("A real conversation. In Uzbek.", "Настоящий диалог. На узбекском."),
-    role: l("Full-stack & voice pipeline development", "Full-stack и разработка голосового конвейера"),
+    role: l(
+      "Full-stack & voice pipeline development",
+      "Full-stack и разработка голосового конвейера",
+    ),
     context: l("Freelance / Commercial client work", "Фриланс / Коммерческие проекты"),
-    challenge: l("Customer support needs to understand natural Uzbek speech, answer questions about inventory, and work with real phone calls rather than a browser-only demo.", "Поддержка должна понимать узбекскую речь, отвечать на вопросы о товарах и работать с настоящими телефонными звонками."),
-    approach: l("Connected Asterisk SIP telephony to speech recognition, catalog retrieval, language model reasoning, and speech synthesis. Added Playwright integration tests and Telegram delivery fallbacks for operational reliability.", "Соединил Asterisk SIP с распознаванием речи, поиском по каталогу, языковой моделью и синтезом речи. Добавил интеграционные тесты Playwright и резервную доставку сообщений через Telegram."),
-    outcome: l("An Uzbek-speaking automated call center that connects telephony and a product knowledge base in one end-to-end workflow.", "Автоматизированный колл-центр на узбекском языке, объединяющий телефонию и базу знаний о товарах в единый процесс."),
+    challenge: l(
+      "Customer support needs to understand natural Uzbek speech, answer questions about inventory, and work with real phone calls rather than a browser-only demo.",
+      "Поддержка должна понимать узбекскую речь, отвечать на вопросы о товарах и работать с настоящими телефонными звонками.",
+    ),
+    approach: l(
+      "Connected Asterisk SIP telephony to speech recognition, catalog retrieval, language model reasoning, and speech synthesis. Added Playwright integration tests and Telegram delivery fallbacks for operational reliability.",
+      "Соединил Asterisk SIP с распознаванием речи, поиском по каталогу, языковой моделью и синтезом речи. Добавил интеграционные тесты Playwright и резервную доставку сообщений через Telegram.",
+    ),
+    outcome: l(
+      "An Uzbek-speaking automated call center that connects telephony and a product knowledge base in one end-to-end workflow.",
+      "Автоматизированный колл-центр на узбекском языке, объединяющий телефонию и базу знаний о товарах в единый процесс.",
+    ),
     stack: ["Node.js", "Express", "Asterisk SIP", "OpenAI", "RAG", "Playwright"],
     pipeline: ["Phone / SIP", "Speech to text", "Catalog / LLM", "Text to speech"],
-    details: [l("Inbound and outbound telephone integration", "Интеграция входящих и исходящих звонков"), l("Retrieval over product catalogs", "Поиск по товарным каталогам"), l("Uzbek speech recognition and synthesis", "Распознавание и синтез узбекской речи")],
-    metric: "UZ", metricLabel: l("native-language voice flow", "голосовой сценарий на узбекском"),
+    details: [
+      l("Inbound and outbound telephone integration", "Интеграция входящих и исходящих звонков"),
+      l("Retrieval over product catalogs", "Поиск по товарным каталогам"),
+      l("Uzbek speech recognition and synthesis", "Распознавание и синтез узбекской речи"),
+    ],
+    metric: "UZ",
+    metricLabel: l("native-language voice flow", "голосовой сценарий на узбекском"),
   },
   {
-    slug: "nikoh-uz", name: "NikohUz", category: ["mobile", "web"], art: "nikoh",
+    slug: "nikoh-uz",
+    name: "NikohUz",
+    category: ["mobile", "web"],
+    art: "nikoh",
     sector: l("Social / Location discovery", "Общение / Геопоиск"),
-    summary: l("Thoughtful connections, built for local culture.", "Осмысленные знакомства с учётом местной культуры."),
+    summary: l(
+      "Thoughtful connections, built for local culture.",
+      "Осмысленные знакомства с учётом местной культуры.",
+    ),
     headline: l("Technology with a sense of place.", "Технологии с пониманием культуры."),
     role: l("Flutter & API development", "Flutter и разработка API"),
     context: l("Product development", "Продуктовая разработка"),
-    challenge: l("A locally relevant relationship platform needs more than matching. The data model must reflect the stages of conversation, location discovery, and moderated media.", "Локальной платформе знакомств нужен не только подбор анкет. Модель данных должна учитывать этапы общения, геопоиск и модерацию медиа."),
-    approach: l("Modeled five conversation stages in Prisma and PostgreSQL. Built the Flutter client with OpenStreetMap, Socket.io, and push notifications. Used Redis for request limiting, MinIO for media, and Zod for API validation.", "Смоделировал пять этапов общения в Prisma и PostgreSQL. Создал Flutter-клиент с OpenStreetMap, Socket.io и push-уведомлениями. Применил Redis для ограничения запросов, MinIO для медиа и Zod для проверки API."),
-    outcome: l("A culturally adapted discovery and communication platform with a shared mobile and backend architecture.", "Адаптированная к местной культуре платформа знакомств и общения с единой мобильной и серверной архитектурой."),
+    challenge: l(
+      "A locally relevant relationship platform needs more than matching. The data model must reflect the stages of conversation, location discovery, and moderated media.",
+      "Локальной платформе знакомств нужен не только подбор анкет. Модель данных должна учитывать этапы общения, геопоиск и модерацию медиа.",
+    ),
+    approach: l(
+      "Modeled five conversation stages in Prisma and PostgreSQL. Built the Flutter client with OpenStreetMap, Socket.io, and push notifications. Used Redis for request limiting, MinIO for media, and Zod for API validation.",
+      "Смоделировал пять этапов общения в Prisma и PostgreSQL. Создал Flutter-клиент с OpenStreetMap, Socket.io и push-уведомлениями. Применил Redis для ограничения запросов, MinIO для медиа и Zod для проверки API.",
+    ),
+    outcome: l(
+      "A culturally adapted discovery and communication platform with a shared mobile and backend architecture.",
+      "Адаптированная к местной культуре платформа знакомств и общения с единой мобильной и серверной архитектурой.",
+    ),
     stack: ["Flutter", "TypeScript", "Prisma", "PostgreSQL", "Redis", "MinIO", "OpenStreetMap"],
     pipeline: ["Flutter / Maps", "Express API", "Redis", "PostgreSQL / S3"],
-    details: [l("Five culturally relevant conversation stages", "Пять этапов общения с учётом местной культуры"), l("Map discovery and live messaging", "Поиск на карте и сообщения в реальном времени"), l("Photo moderation and rate-limited APIs", "Модерация фото и ограничение частоты запросов")],
-    metric: "5", metricLabel: l("conversation stages", "этапов общения"),
+    details: [
+      l(
+        "Five culturally relevant conversation stages",
+        "Пять этапов общения с учётом местной культуры",
+      ),
+      l("Map discovery and live messaging", "Поиск на карте и сообщения в реальном времени"),
+      l("Photo moderation and rate-limited APIs", "Модерация фото и ограничение частоты запросов"),
+    ],
+    metric: "5",
+    metricLabel: l("conversation stages", "этапов общения"),
   },
   {
-    slug: "game-studio", name: "Game Studio", category: ["games", "ai"], art: "games",
+    slug: "game-studio",
+    name: "Game Studio",
+    category: ["games", "ai"],
+    art: "games",
     sector: l("Flutter Flame / Agent tooling", "Flutter Flame / ИИ-инструменты"),
-    summary: l("From a one-line idea to a playable world.", "От идеи в одну строку до игрового мира."),
+    summary: l(
+      "From a one-line idea to a playable world.",
+      "От идеи в одну строку до игрового мира.",
+    ),
     headline: l("Build the tools that build the game.", "Инструменты, которые создают игры."),
     role: l("Game developer & AI tooling engineer", "Разработчик игр и ИИ-инструментов"),
     context: l("Baklajan / March 2026 - present", "Baklajan / Март 2026 - настоящее время"),
-    challenge: l("Repeatable game production requires consistent architecture, reliable mechanics, asset integration, and verification. Generating code is only one part of a complete production process.", "Повторяемое производство игр требует единой архитектуры, надёжных механик, интеграции ресурсов и проверок. Генерация кода является лишь частью полного процесса."),
-    approach: l("Built Flutter Flame games and prompt-to-game tooling. Orchestrated specialized agents through Claude Code, Codex CLI, and Gemini CLI, with project scaffolding, asset wiring, automated emulator checks, and code review.", "Разрабатывал игры на Flutter Flame и инструменты генерации по запросу. Организовал работу агентов через Claude Code, Codex CLI и Gemini CLI: создание проектов, подключение ресурсов, проверки в эмуляторе и ревью кода."),
-    outcome: l("15+ game builds and reusable production tooling. The public Flutter Gambling Studio repository documents a virtual-currency game workflow with mathematical verification and release gates.", "15+ игровых сборок и переиспользуемые инструменты производства. Открытый репозиторий Flutter Gambling Studio описывает процесс создания игр на виртуальную валюту с математическими проверками и контролем выпуска."),
+    challenge: l(
+      "Repeatable game production requires consistent architecture, reliable mechanics, asset integration, and verification. Generating code is only one part of a complete production process.",
+      "Повторяемое производство игр требует единой архитектуры, надёжных механик, интеграции ресурсов и проверок. Генерация кода является лишь частью полного процесса.",
+    ),
+    approach: l(
+      "Built Flutter Flame games and prompt-to-game tooling. Orchestrated specialized agents through Claude Code, Codex CLI, and Gemini CLI, with project scaffolding, asset wiring, automated emulator checks, and code review.",
+      "Разрабатывал игры на Flutter Flame и инструменты генерации по запросу. Организовал работу агентов через Claude Code, Codex CLI и Gemini CLI: создание проектов, подключение ресурсов, проверки в эмуляторе и ревью кода.",
+    ),
+    outcome: l(
+      "15+ game builds and reusable production tooling. The public Flutter Gambling Studio repository documents a virtual-currency game workflow with mathematical verification and release gates.",
+      "15+ игровых сборок и переиспользуемые инструменты производства. Открытый репозиторий Flutter Gambling Studio описывает процесс создания игр на виртуальную валюту с математическими проверками и контролем выпуска.",
+    ),
     stack: ["Flutter", "Flame", "Dart", "Claude Code", "Codex CLI", "Gemini CLI", "Python"],
     pipeline: ["Concept", "Agent workflow", "Flutter / Flame", "QA / Release"],
-    details: [l("Gameplay, animation, and asset integration", "Игровая логика, анимация и интеграция ресурсов"), l("Automated emulator testing and defect diagnosis", "Автоматические проверки в эмуляторе и диагностика ошибок"), l("Reusable skills and agent orchestration", "Переиспользуемые навыки и оркестрация агентов")],
-    metric: "15+", metricLabel: l("game builds", "игровых сборок"),
+    details: [
+      l(
+        "Gameplay, animation, and asset integration",
+        "Игровая логика, анимация и интеграция ресурсов",
+      ),
+      l(
+        "Automated emulator testing and defect diagnosis",
+        "Автоматические проверки в эмуляторе и диагностика ошибок",
+      ),
+      l("Reusable skills and agent orchestration", "Переиспользуемые навыки и оркестрация агентов"),
+    ],
+    metric: "15+",
+    metricLabel: l("game builds", "игровых сборок"),
     repo: "https://github.com/leofilllium/flutter-gambling-studio",
   },
   {
-    slug: "marketcard", name: "Marketcard", category: ["web"], art: "market",
+    slug: "marketcard",
+    name: "Marketcard",
+    category: ["web"],
+    art: "market",
     sector: l("Commerce / Motion design", "Коммерция / Анимация"),
-    summary: l("A product experience with a little more personality.", "Продуктовый интерфейс с характером."),
+    summary: l(
+      "A product experience with a little more personality.",
+      "Продуктовый интерфейс с характером.",
+    ),
     headline: l("Make the interaction memorable.", "Взаимодействие, которое запоминается."),
     role: l("Frontend development", "Frontend-разработка"),
     context: l("Product development", "Продуктовая разработка"),
-    challenge: l("An animated product and card-customization experience needs to balance expressive motion with a predictable interface and a maintainable component system.", "Анимированный продуктовый интерфейс с настройкой карточек должен сочетать выразительное движение, понятное управление и поддерживаемую систему компонентов."),
-    approach: l("Used Next.js, React, and TypeScript to organize the interface, Tailwind CSS for styling, and GSAP for coordinated product transitions and animation.", "Применил Next.js, React и TypeScript для структуры интерфейса, Tailwind CSS для стилей и GSAP для согласованных переходов и анимации."),
-    outcome: l("An animated product landing and card-customization application that extends my mobile work into interactive web experiences.", "Анимированный продуктовый лендинг и приложение для настройки карточек, дополняющие мой мобильный опыт интерактивными веб-проектами."),
+    challenge: l(
+      "An animated product and card-customization experience needs to balance expressive motion with a predictable interface and a maintainable component system.",
+      "Анимированный продуктовый интерфейс с настройкой карточек должен сочетать выразительное движение, понятное управление и поддерживаемую систему компонентов.",
+    ),
+    approach: l(
+      "Used Next.js, React, and TypeScript to organize the interface, Tailwind CSS for styling, and GSAP for coordinated product transitions and animation.",
+      "Применил Next.js, React и TypeScript для структуры интерфейса, Tailwind CSS для стилей и GSAP для согласованных переходов и анимации.",
+    ),
+    outcome: l(
+      "An animated product landing and card-customization application that extends my mobile work into interactive web experiences.",
+      "Анимированный продуктовый лендинг и приложение для настройки карточек, дополняющие мой мобильный опыт интерактивными веб-проектами.",
+    ),
     stack: ["Next.js", "React", "TypeScript", "GSAP", "Tailwind CSS"],
     pipeline: ["Next.js", "React state", "Customization", "GSAP motion"],
-    details: [l("Coordinated product animation", "Согласованная анимация продукта"), l("Interactive card customization", "Интерактивная настройка карточек"), l("Typed, reusable UI components", "Типизированные переиспользуемые компоненты")],
-    metric: "WEB", metricLabel: l("interactive product experience", "интерактивный продуктовый интерфейс"),
+    details: [
+      l("Coordinated product animation", "Согласованная анимация продукта"),
+      l("Interactive card customization", "Интерактивная настройка карточек"),
+      l("Typed, reusable UI components", "Типизированные переиспользуемые компоненты"),
+    ],
+    metric: "WEB",
+    metricLabel: l("interactive product experience", "интерактивный продуктовый интерфейс"),
   },
   {
-    slug: "meditrack", name: "MediTrack", category: ["web"], art: "meditrack",
+    slug: "meditrack",
+    name: "MediTrack",
+    category: ["web"],
+    art: "meditrack",
     sector: l("Healthcare / University project", "Медицина / Учебный проект"),
-    summary: l("Patient records, connected from database to deployment.", "Медицинские данные: от базы до развёртывания."),
+    summary: l(
+      "Patient records, connected from database to deployment.",
+      "Медицинские данные: от базы до развёртывания.",
+    ),
     headline: l("The system behind better records.", "Система для медицинских данных."),
     role: l("Full-stack development", "Full-stack разработка"),
     context: l("WIUT / Academic project", "WIUT / Учебный проект"),
-    challenge: l("Patient records, prescriptions, appointments, and medications need clear relationships, access control, and a deployment that can be reproduced outside a developer’s laptop.", "Карточкам пациентов, рецептам, приёмам и лекарствам нужны ясные связи, контроль доступа и воспроизводимое развёртывание."),
-    approach: l("Built a Django and PostgreSQL application with linked clinical records and an administration interface. Containerized the app with Docker, added Nginx and Gunicorn, and automated checks with GitHub Actions and pytest.", "Создал приложение на Django и PostgreSQL со связанными медицинскими записями и административным интерфейсом. Настроил Docker, Nginx и Gunicorn, автоматизировал проверки через GitHub Actions и pytest."),
-    outcome: l("A documented university project covering the full delivery path: relational data modeling, authentication, application logic, tests, and containerized deployment.", "Документированный учебный проект с полным циклом: реляционная модель данных, аутентификация, логика приложения, тесты и контейнерное развёртывание."),
+    challenge: l(
+      "Patient records, prescriptions, appointments, and medications need clear relationships, access control, and a deployment that can be reproduced outside a developer’s laptop.",
+      "Карточкам пациентов, рецептам, приёмам и лекарствам нужны ясные связи, контроль доступа и воспроизводимое развёртывание.",
+    ),
+    approach: l(
+      "Built a Django and PostgreSQL application with linked clinical records and an administration interface. Containerized the app with Docker, added Nginx and Gunicorn, and automated checks with GitHub Actions and pytest.",
+      "Создал приложение на Django и PostgreSQL со связанными медицинскими записями и административным интерфейсом. Настроил Docker, Nginx и Gunicorn, автоматизировал проверки через GitHub Actions и pytest.",
+    ),
+    outcome: l(
+      "A documented university project covering the full delivery path: relational data modeling, authentication, application logic, tests, and containerized deployment.",
+      "Документированный учебный проект с полным циклом: реляционная модель данных, аутентификация, логика приложения, тесты и контейнерное развёртывание.",
+    ),
     stack: ["Python", "Django", "PostgreSQL", "Docker", "Nginx", "GitHub Actions", "pytest"],
     pipeline: ["Nginx", "Gunicorn / Django", "PostgreSQL", "Docker / CI"],
-    details: [l("Patient records, appointments, and prescriptions", "Медицинские записи, приёмы и рецепты"), l("Relational data modeling and authenticated workflows", "Реляционная модель данных и аутентификация"), l("Automated tests and containerized delivery", "Автоматические тесты и развёртывание в контейнерах")],
-    metric: "BSc", metricLabel: l("academic engineering project", "учебный инженерный проект"),
+    details: [
+      l("Patient records, appointments, and prescriptions", "Медицинские записи, приёмы и рецепты"),
+      l(
+        "Relational data modeling and authenticated workflows",
+        "Реляционная модель данных и аутентификация",
+      ),
+      l(
+        "Automated tests and containerized delivery",
+        "Автоматические тесты и развёртывание в контейнерах",
+      ),
+    ],
+    metric: "BSc",
+    metricLabel: l("academic engineering project", "учебный инженерный проект"),
     repo: "https://github.com/leofilllium/00013219-CW-DSCC",
   },
 ];
 export const experiences = [
-  { company: "Baklajan", date: l("MAR 2026 / PRESENT", "МАР 2026 / СЕЙЧАС"), role: l("Games & AI tooling", "Игры и инструменты ИИ"), text: l("Flutter Flame games, prompt-to-game generation, agent orchestration, and automated emulator QA.", "Игры на Flutter Flame, генерация игр по запросу, оркестрация агентов и автоматические проверки в эмуляторе."), tags: ["Flutter", "Flame", "AI agents"] },
-  { company: l("Independent", "Фриланс"), date: l("MAR 2024 / PRESENT", "МАР 2024 / СЕЙЧАС"), role: l("Full-stack product development", "Full-stack продуктовая разработка"), text: l("Taxi and delivery, legal AI, voice automation, and connected mobile platforms. Ownership from architecture to release.", "Такси и доставка, юридический ИИ, автоматизация звонков и мобильные платформы. От архитектуры до выпуска."), tags: ["Mobile", "Backend", "RAG"] },
-  { company: "X-Team Pro", date: l("DEC 2025 / FEB 2026", "ДЕК 2025 / ФЕВ 2026"), role: l("Founding Flutter Developer", "Flutter-разработчик с запуска продукта"), text: l("Built Study Ninja with a four-engineer team: adaptive learning, SSE tutoring, knowledge maps, and modular architecture.", "Создал Study Ninja в команде из четырёх инженеров: адаптивное обучение, SSE-тьютор, карты знаний и модульная архитектура."), tags: ["BLoC", "SSE", "React"] },
-  { company: "Realsoft", date: l("JAN 2024 / MAR 2024", "ЯНВ 2024 / МАР 2024"), role: l("Junior Flutter Developer", "Младший Flutter-разработчик"), text: l("Integrated E-IMZO digital signatures, migrated modules to Clean Architecture, and tested critical authentication flows.", "Интегрировал электронную подпись E-IMZO, переводил модули на Clean Architecture и тестировал сценарии аутентификации."), tags: ["E-IMZO", "Clean Architecture", "Testing"] },
+  {
+    company: "Baklajan",
+    date: l("MAR 2026 / PRESENT", "МАР 2026 / СЕЙЧАС"),
+    role: l("Games & AI tooling", "Игры и инструменты ИИ"),
+    text: l(
+      "Flutter Flame games, prompt-to-game generation, agent orchestration, and automated emulator QA.",
+      "Игры на Flutter Flame, генерация игр по запросу, оркестрация агентов и автоматические проверки в эмуляторе.",
+    ),
+    tags: ["Flutter", "Flame", "AI agents"],
+  },
+  {
+    company: l("Independent", "Фриланс"),
+    date: l("MAR 2024 / PRESENT", "МАР 2024 / СЕЙЧАС"),
+    role: l("Full-stack product development", "Full-stack продуктовая разработка"),
+    text: l(
+      "Taxi and delivery, legal AI, voice automation, and connected mobile platforms. Ownership from architecture to release.",
+      "Такси и доставка, юридический ИИ, автоматизация звонков и мобильные платформы. От архитектуры до выпуска.",
+    ),
+    tags: ["Mobile", "Backend", "RAG"],
+  },
+  {
+    company: "X-Team Pro",
+    date: l("DEC 2025 / FEB 2026", "ДЕК 2025 / ФЕВ 2026"),
+    role: l("Founding Flutter Developer", "Flutter-разработчик с запуска продукта"),
+    text: l(
+      "Built Study Ninja with a four-engineer team: adaptive learning, SSE tutoring, knowledge maps, and modular architecture.",
+      "Создал Study Ninja в команде из четырёх инженеров: адаптивное обучение, SSE-тьютор, карты знаний и модульная архитектура.",
+    ),
+    tags: ["BLoC", "SSE", "React"],
+  },
+  {
+    company: "Realsoft",
+    date: l("JAN 2024 / MAR 2024", "ЯНВ 2024 / МАР 2024"),
+    role: l("Junior Flutter Developer", "Младший Flutter-разработчик"),
+    text: l(
+      "Integrated E-IMZO digital signatures, migrated modules to Clean Architecture, and tested critical authentication flows.",
+      "Интегрировал электронную подпись E-IMZO, переводил модули на Clean Architecture и тестировал сценарии аутентификации.",
+    ),
+    tags: ["E-IMZO", "Clean Architecture", "Testing"],
+  },
 ];
 export const skills = [
-  { name: l("Mobile & games", "Мобильные приложения и игры"), items: ["Flutter", "Dart", "Flame", "BLoC / Cubit", "Riverpod", "GoRouter", "GetIt", "Freezed", "Google Maps", "FCM"] },
-  { name: l("Web experiences", "Веб-интерфейсы"), items: ["React", "Next.js", "TypeScript", "Tailwind CSS", "GSAP", "Zustand", "Radix UI", "Vite"] },
-  { name: l("Backend & data", "Сервер и данные"), items: ["Python", "FastAPI", "Django", "Node.js", "Express", "Prisma", "PostgreSQL", "Redis", "SQLite", "Hive", "MinIO"] },
-  { name: l("AI & infrastructure", "ИИ и инфраструктура"), items: ["LangChain", "ChromaDB", "RAG", "OpenAI API", "Gemini API", "SSE", "Socket.io", "Asterisk SIP", "Docker", "GitHub Actions", "Playwright"] },
+  {
+    name: l("Mobile & games", "Мобильные приложения и игры"),
+    items: [
+      "Flutter",
+      "Dart",
+      "Flame",
+      "BLoC / Cubit",
+      "Riverpod",
+      "GoRouter",
+      "GetIt",
+      "Freezed",
+      "Google Maps",
+      "FCM",
+    ],
+  },
+  {
+    name: l("Web experiences", "Веб-интерфейсы"),
+    items: [
+      "React",
+      "Next.js",
+      "TypeScript",
+      "Tailwind CSS",
+      "GSAP",
+      "Zustand",
+      "Radix UI",
+      "Vite",
+    ],
+  },
+  {
+    name: l("Backend & data", "Сервер и данные"),
+    items: [
+      "Python",
+      "FastAPI",
+      "Django",
+      "Node.js",
+      "Express",
+      "Prisma",
+      "PostgreSQL",
+      "Redis",
+      "SQLite",
+      "Hive",
+      "MinIO",
+    ],
+  },
+  {
+    name: l("AI & infrastructure", "ИИ и инфраструктура"),
+    items: [
+      "LangChain",
+      "ChromaDB",
+      "RAG",
+      "OpenAI API",
+      "Gemini API",
+      "SSE",
+      "Socket.io",
+      "Asterisk SIP",
+      "Docker",
+      "GitHub Actions",
+      "Playwright",
+    ],
+  },
 ];
