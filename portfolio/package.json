@@ -1,0 +1,39 @@
+{
+  "name": "sherzod-portfolio",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev --hostname 127.0.0.1",
+    "build": "next build",
+    "start": "next start --hostname 127.0.0.1",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
+    "test:e2e": "playwright test"
+  },
+  "engines": { "node": ">=22.0.0" },
+  "dependencies": {
+    "@phosphor-icons/react": "^2.1.10",
+    "@radix-ui/react-dialog": "^1.1.15",
+    "@react-three/drei": "^10.7.7",
+    "@react-three/fiber": "^9.7.0",
+    "motion": "^13.2.0",
+    "next": "16.3.4",
+    "react": "19.2.8",
+    "react-dom": "19.2.8",
+    "three": "^0.183.2"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "^4.11.1",
+    "@playwright/test": "^1.58.2",
+    "@tailwindcss/postcss": "^4.2.1",
+    "@types/node": "^24.0.0",
+    "@types/react": "^19.2.0",
+    "@types/react-dom": "^19.2.0",
+    "@types/three": "^0.183.1",
+    "eslint": "^9.39.0",
+    "eslint-config-next": "16.3.4",
+    "lighthouse": "^13.0.3",
+    "tailwindcss": "^4.2.1",
+    "typescript": "^5.9.3"
+  }
+}
