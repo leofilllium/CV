@@ -11,7 +11,6 @@ const slugs = [
   "study-ninja",
   "aloqa-ai",
   "nikoh-uz",
-  "game-studio",
   "marketcard",
   "meditrack",
 ];
@@ -28,11 +27,11 @@ test("content, filters, case-study navigation, and public CV", async ({ page, re
   await expect(page.locator(".education-band")).toContainText("Studies ongoing");
   await expect(page.locator(".project-entry")).toHaveCount(6);
   await page.getByRole("button", { name: "Games & tools", exact: true }).click();
-  await expect(page.locator(".project-entry")).toHaveCount(2);
-  await expect(page.locator(".project-entry").filter({ hasText: "Game Studio" })).toHaveCount(2);
+  await expect(page.locator(".project-entry")).toHaveCount(1);
+  await expect(page.locator(".project-entry").filter({ hasText: "Flutter Game Studio" })).toHaveCount(1);
   await page.getByRole("button", { name: "All worlds", exact: true }).click();
-  await page.getByRole("button", { name: "Explore all 12 projects" }).click();
-  await expect(page.locator(".project-entry")).toHaveCount(12);
+  await page.getByRole("button", { name: "Explore all 11 projects" }).click();
+  await expect(page.locator(".project-entry")).toHaveCount(11);
   await page.locator('.project-link[href="/work/lawyer-ai"]').click();
   await expect(page).toHaveURL(/\/work\/lawyer-ai$/);
   await expect(page.locator("h1")).toHaveText("Lawyer AI");
@@ -141,11 +140,13 @@ test("all published routes, metadata, and missing-route behavior", async ({ requ
     }
   }
   expect((await request.get("/work/missing-project")).status()).toBe(404);
+  expect((await request.get("/work/game-studio")).status()).toBe(404);
+  expect((await request.get("/ru/work/game-studio")).status()).toBe(404);
   const og = await request.get("/opengraph-image");
   expect(og.status()).toBe(200);
   expect(og.headers()["content-type"]).toContain("image/png");
   const sitemap = await request.get("/sitemap.xml");
-  expect((await sitemap.text()).match(/<loc>/g)?.length).toBe(26);
+  expect((await sitemap.text()).match(/<loc>/g)?.length).toBe(24);
 });
 
 test("ClubHub discovery and live project links in both languages", async ({ page }) => {
@@ -156,7 +157,7 @@ test("ClubHub discovery and live project links in both languages", async ({ page
   ];
   await page.goto("/");
   await expect(page.locator('.project-link[href="/work/clubhub"]')).toBeVisible();
-  await page.getByRole("button", { name: "Explore all 12 projects" }).click();
+  await page.getByRole("button", { name: "Explore all 11 projects" }).click();
   for (const site of sites) {
     await expect(page.getByRole("link", { name: `Visit ${site.name} website` })).toHaveAttribute(
       "href",

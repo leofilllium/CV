@@ -1030,13 +1030,6 @@ html[lang="ru"] .hero h1 {
   transform: rotate(45deg);
   background: #c4e98d;
 }
-.games-art .constellation-core {
-  border-radius: 10px;
-  transform: rotateX(25deg) rotateZ(45deg);
-}
-.games-art .constellation-core svg {
-  transform: rotate(-45deg);
-}
 .market-art .constellation-core {
   transform: rotate(-18deg);
   width: 175px;

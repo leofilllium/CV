@@ -392,48 +392,6 @@ export const projects: Project[] = [
     metricLabel: l("conversation stages", "этапов общения"),
   },
   {
-    slug: "game-studio",
-    name: "Game Studio",
-    category: ["games", "ai"],
-    art: "games",
-    sector: l("Flutter Flame / Agent tooling", "Flutter Flame / ИИ-инструменты"),
-    summary: l(
-      "From a one-line idea to a playable world.",
-      "От идеи в одну строку до игрового мира.",
-    ),
-    headline: l("Build the tools that build the game.", "Инструменты, которые создают игры."),
-    role: l("Game developer & AI tooling engineer", "Разработчик игр и ИИ-инструментов"),
-    context: l("Baklajan / March 2026 - present", "Baklajan / Март 2026 - настоящее время"),
-    challenge: l(
-      "Repeatable game production requires consistent architecture, reliable mechanics, asset integration, and verification. Generating code is only one part of a complete production process.",
-      "Повторяемое производство игр требует единой архитектуры, надёжных механик, интеграции ресурсов и проверок. Генерация кода является лишь частью полного процесса.",
-    ),
-    approach: l(
-      "Built Flutter Flame games and prompt-to-game tooling. Orchestrated specialized agents through Claude Code, Codex CLI, and Gemini CLI, with project scaffolding, asset wiring, automated emulator checks, and code review.",
-      "Разрабатывал игры на Flutter Flame и инструменты генерации по запросу. Организовал работу агентов через Claude Code, Codex CLI и Gemini CLI: создание проектов, подключение ресурсов, проверки в эмуляторе и ревью кода.",
-    ),
-    outcome: l(
-      "15+ game builds and reusable production tooling. The public Flutter Gambling Studio repository documents a virtual-currency game workflow with mathematical verification and release gates.",
-      "15+ игровых сборок и переиспользуемые инструменты производства. Открытый репозиторий Flutter Gambling Studio описывает процесс создания игр на виртуальную валюту с математическими проверками и контролем выпуска.",
-    ),
-    stack: ["Flutter", "Flame", "Dart", "Claude Code", "Codex CLI", "Gemini CLI", "Python"],
-    pipeline: ["Concept", "Agent workflow", "Flutter / Flame", "QA / Release"],
-    details: [
-      l(
-        "Gameplay, animation, and asset integration",
-        "Игровая логика, анимация и интеграция ресурсов",
-      ),
-      l(
-        "Automated emulator testing and defect diagnosis",
-        "Автоматические проверки в эмуляторе и диагностика ошибок",
-      ),
-      l("Reusable skills and agent orchestration", "Переиспользуемые навыки и оркестрация агентов"),
-    ],
-    metric: "15+",
-    metricLabel: l("game builds", "игровых сборок"),
-    repo: "https://github.com/leofilllium/flutter-gambling-studio",
-  },
-  {
     slug: "marketcard",
     name: "MarketCard AI",
     category: ["web"],

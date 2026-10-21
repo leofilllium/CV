@@ -6,7 +6,6 @@ const covers: Record<string, { src: string; alt: string; concept?: boolean }> = 
   study: { src: "/images/study-ninja.webp", alt: "Concept image of an adaptive learning app on a phone", concept: true },
   aloqa: { src: "/images/aloqa-ai.webp", alt: "Concept image of an AI voice call workstation", concept: true },
   nikoh: { src: "/images/nikoh-uz.webp", alt: "Concept image of map discovery and conversation screens", concept: true },
-  games: { src: "/images/game-studio.webp", alt: "Concept image of a game development workstation", concept: true },
   market: { src: "/images/marketcard.webp", alt: "Screenshot of the Marketcard AI product website" },
   meditrack: { src: "/images/meditrack.webp", alt: "Concept image of a patient record dashboard", concept: true },
   flame: { src: "/images/flutter-game-studio.png", alt: "Screenshot of the live Flame Studio website" },
