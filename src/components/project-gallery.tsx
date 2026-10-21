@@ -41,7 +41,7 @@ export function ProjectGallery() {
   const filtered = projects.filter(
     (project) => filter === "all" || project.category.includes(filter),
   );
-  const shown = filter === "all" && !expanded ? filtered.slice(0, 4) : filtered;
+  const shown = filter === "all" && !expanded ? filtered.slice(0, 6) : filtered;
   return (
     <section className="section-shell work-section" id="work" aria-labelledby="work-heading">
       <Reveal>
@@ -90,7 +90,7 @@ export function ProjectGallery() {
           >
             <Link href={workPath(project.slug, locale)} className="project-link">
               <Tilt>
-                <ProjectArt art={project.art} />
+                <ProjectArt art={project.art} locale={locale} />
               </Tilt>
               <div className="project-meta">
                 <span>{t(project.sector, locale)}</span>

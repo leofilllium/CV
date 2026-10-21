@@ -3,10 +3,13 @@ import AxeBuilder from "@axe-core/playwright";
 
 const slugs = [
   "safar-one",
+  "native-kit",
   "lawyer-ai",
+  "atria",
   "clubhub",
+  "flutter-game-studio",
   "study-ninja",
-  "sado-ai",
+  "aloqa-ai",
   "nikoh-uz",
   "game-studio",
   "marketcard",
@@ -23,13 +26,13 @@ test("content, filters, case-study navigation, and public CV", async ({ page, re
     /99[.,]8|6 commercial|six commercial|Senior Flutter/,
   );
   await expect(page.locator(".education-band")).toContainText("Studies ongoing");
-  await expect(page.locator(".project-entry")).toHaveCount(4);
+  await expect(page.locator(".project-entry")).toHaveCount(6);
   await page.getByRole("button", { name: "Games & tools", exact: true }).click();
-  await expect(page.locator(".project-entry")).toHaveCount(1);
-  await expect(page.locator(".project-entry")).toContainText("Game Studio");
+  await expect(page.locator(".project-entry")).toHaveCount(2);
+  await expect(page.locator(".project-entry").filter({ hasText: "Game Studio" })).toHaveCount(2);
   await page.getByRole("button", { name: "All worlds", exact: true }).click();
-  await page.getByRole("button", { name: "Explore all 9 projects" }).click();
-  await expect(page.locator(".project-entry")).toHaveCount(9);
+  await page.getByRole("button", { name: "Explore all 12 projects" }).click();
+  await expect(page.locator(".project-entry")).toHaveCount(12);
   await page.locator('.project-link[href="/work/lawyer-ai"]').click();
   await expect(page).toHaveURL(/\/work\/lawyer-ai$/);
   await expect(page.locator("h1")).toHaveText("Lawyer AI");
@@ -142,18 +145,18 @@ test("all published routes, metadata, and missing-route behavior", async ({ requ
   expect(og.status()).toBe(200);
   expect(og.headers()["content-type"]).toContain("image/png");
   const sitemap = await request.get("/sitemap.xml");
-  expect((await sitemap.text()).match(/<loc>/g)?.length).toBe(20);
+  expect((await sitemap.text()).match(/<loc>/g)?.length).toBe(26);
 });
 
 test("ClubHub discovery and live project links in both languages", async ({ page }) => {
   const sites = [
     { slug: "lawyer-ai", name: "Lawyer AI", url: "https://lawyerai.uz" },
     { slug: "clubhub", name: "ClubHub", url: "https://clubhub.uz" },
-    { slug: "sado-ai", name: "Sado AI", url: "https://callai.academytable.ru/" },
+    { slug: "aloqa-ai", name: "Aloqa AI", url: "https://aloqaai.uz" },
   ];
   await page.goto("/");
   await expect(page.locator('.project-link[href="/work/clubhub"]')).toBeVisible();
-  await page.getByRole("button", { name: "Explore all 9 projects" }).click();
+  await page.getByRole("button", { name: "Explore all 12 projects" }).click();
   for (const site of sites) {
     await expect(page.getByRole("link", { name: `Visit ${site.name} website` })).toHaveAttribute(
       "href",

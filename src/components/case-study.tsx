@@ -51,7 +51,7 @@ export function CaseStudy({ project, locale }: { project: Project; locale: Local
         </header>
         <Reveal>
           <div className="case-hero-art">
-            <ProjectArt art={project.art} large />
+            <ProjectArt art={project.art} large locale={locale} />
           </div>
         </Reveal>
         <div className="case-story">
@@ -126,6 +126,14 @@ export function CaseStudy({ project, locale }: { project: Project; locale: Local
             </Reveal>
           ))}
         </div>
+        {project.slug === "atria" && (
+          <figure className="case-presentation">
+            <Image src="/images/atria-presentation.png" width={1672} height={941}
+              alt={ru ? "Презентация Atria: экраны приложения, технологии и функции" : "Atria presentation: app screens, technology stack and features"}
+              sizes="(max-width: 768px) 100vw, 1100px" />
+            <figcaption>{ru ? "Презентация приложения Atria" : "Atria app presentation"}</figcaption>
+          </figure>
+        )}
         {project.art === "safar" && (
           <section
             className="case-gallery"

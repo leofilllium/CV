@@ -724,6 +724,46 @@ html[lang="ru"] .hero h1 {
 .project-art.large {
   height: 540px;
 }
+.cover-art img {
+  transition: transform 0.7s ease;
+}
+.project-link:hover .cover-art img {
+  transform: scale(1.035);
+}
+.concept-label {
+  position: absolute;
+  z-index: 1;
+  right: 14px;
+  bottom: 14px;
+  padding: 7px 9px;
+  border-radius: 5px;
+  background: #171d19d9;
+  color: #fff;
+  font: 10px var(--font-mono);
+  letter-spacing: 0.04em;
+}
+.paired-art {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: clamp(12px, 4%, 34px);
+  padding: 25px 24px 0;
+  background: radial-gradient(circle at 50% 45%, #748065, #293127 80%);
+}
+.native-art.paired-art { background: radial-gradient(circle at 50% 45%, #866d6a, #342d30 80%); }
+.atria-art.paired-art { background: radial-gradient(circle at 50% 45%, #713e39, #261e22 80%); }
+.paired-phone {
+  width: min(36%, 220px);
+  flex: 0 0 auto;
+  overflow: hidden;
+  border: 5px solid #16191b;
+  border-radius: 26px;
+  box-shadow: 0 20px 35px #0007;
+}
+.paired-phone:nth-child(2) { margin-top: 45px; }
+.paired-phone img { display: block; width: 100%; height: auto; }
+.paired-art.large .paired-phone { width: min(34%, 290px); }
+.paired-art.large .paired-phone:nth-child(2) { margin-top: 60px; }
 .project-meta {
   display: flex;
   justify-content: space-between;
@@ -1752,6 +1792,20 @@ html[lang="ru"] .hero h1 {
 .case-hero-art {
   overflow: hidden;
   border-radius: 20px;
+}
+.case-presentation {
+  margin: 55px 0 0;
+}
+.case-presentation img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 16px;
+}
+.case-presentation figcaption {
+  margin-top: 12px;
+  color: var(--muted);
+  font-size: 11px;
 }
 .case-story {
   display: grid;
