@@ -134,6 +134,14 @@ export function CaseStudy({ project, locale }: { project: Project; locale: Local
             <figcaption>{ru ? "Презентация приложения Atria" : "Atria app presentation"}</figcaption>
           </figure>
         )}
+        {project.slug === "native-kit" && (
+          <figure className="case-presentation">
+            <Image src="/images/native-kit-presentation.png" width={1672} height={941}
+              alt={ru ? "Презентация NativeKit: системные окна iOS и Android и технологии плагина" : "NativeKit presentation: iOS and Android system UI and plugin stack"}
+              sizes="(max-width: 768px) 100vw, 1100px" />
+            <figcaption>{ru ? "Презентация NativeKit" : "NativeKit presentation"}</figcaption>
+          </figure>
+        )}
         {project.art === "safar" && (
           <section
             className="case-gallery"

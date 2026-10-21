@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Manrope, Space_Grotesk, IBM_Plex_Mono } from "next/font/google";
+import { RouteScrollManager } from "@/components/route-scroll-manager";
 import "./globals.css";
 
 const manrope = Manrope({
@@ -57,7 +58,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       <head>
         <script dangerouslySetInnerHTML={{ __html: init }} />
       </head>
-      <body>{children}</body>
+      <body><RouteScrollManager />{children}</body>
     </html>
   );
 }

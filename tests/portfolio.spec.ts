@@ -48,6 +48,27 @@ test("content, filters, case-study navigation, and public CV", async ({ page, re
   expect(errors).toEqual([]);
 });
 
+test("new pages start at the top while section links keep their anchor", async ({ page }) => {
+  await page.goto("/work/safar-one");
+  await page.evaluate(() => window.scrollTo({ top: document.documentElement.scrollHeight, behavior: "instant" }));
+  await expect.poll(() => page.evaluate(() => scrollY)).toBeGreaterThan(1000);
+  await page.locator(".next-case").click();
+  await expect(page).toHaveURL(/\/work\/native-kit$/);
+  await expect.poll(() => page.evaluate(() => scrollY)).toBe(0);
+
+  await page.locator(".case-back").click();
+  await expect(page).toHaveURL(/\/#work$/);
+  await expect.poll(() => page.evaluate(() => scrollY)).toBeGreaterThan(500);
+  await page.locator('.project-link[href="/work/lawyer-ai"]').click();
+  await expect(page).toHaveURL(/\/work\/lawyer-ai$/);
+  await expect.poll(() => page.evaluate(() => scrollY)).toBe(0);
+
+  await page.evaluate(() => window.scrollTo({ top: document.documentElement.scrollHeight, behavior: "instant" }));
+  await page.getByRole("link", { name: "RU: Переключить на русский" }).click();
+  await expect(page).toHaveURL(/\/ru\/work\/lawyer-ai$/);
+  await expect.poll(() => page.evaluate(() => scrollY)).toBe(0);
+});
+
 test("search, empty results, recruiter facts, and keyboard dismissal", async ({ page }) => {
   await page.goto("/");
   await page.keyboard.press(process.platform === "darwin" ? "Meta+k" : "Control+k");
